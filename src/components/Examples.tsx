@@ -1,39 +1,54 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Examples() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [fullscreenVideo, setFullscreenVideo] = useState<number | null>(null);
+  
   const examples = [
     {
       id: 1,
       type: "Reel",
-      gradient: "from-blue-400 to-blue-600"
+      gradient: "from-blue-400 to-blue-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" // Replace with actual video
     },
     {
       id: 2,
       type: "Carousel",
-      gradient: "from-gray-200 to-gray-300"
+      gradient: "from-gray-200 to-gray-300",
+      videoUrl: "https://www.w3schools.com/html/movie.mp4" // Replace with actual video
     },
     {
       id: 3,
       type: "Reel",
-      gradient: "from-navy-400 to-navy-600"
+      gradient: "from-navy-400 to-navy-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" // Replace with actual video
     },
     {
       id: 4,
       type: "Carousel",
-      gradient: "from-gray-200 to-gray-300"
+      gradient: "from-gray-200 to-gray-300",
+      videoUrl: "https://www.w3schools.com/html/movie.mp4" // Replace with actual video
     },
     {
       id: 5,
       type: "Reel",
-      gradient: "from-navy-400 to-navy-600"
+      gradient: "from-navy-400 to-navy-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" // Replace with actual video
     }
   ];
 
   // Duplicate for seamless loop
   const duplicatedExamples = [...examples, ...examples, ...examples];
+
+  const handleVideoClick = (id: number) => {
+    setFullscreenVideo(id);
+  };
+
+  const closeFullscreen = () => {
+    setFullscreenVideo(null);
+  };
 
   return (
     <section className="bg-gradient-navy section-padding overflow-hidden relative" ref={ref} id="Examples">
@@ -188,100 +203,41 @@ export default function Examples() {
               key={`${example.id}-${index}`}
               className="group relative aspect-9/16 rounded-3xl overflow-hidden shadow-2xl cursor-pointer shrink-0 w-60 sm:w-80 lg:w-96"
               whileHover={{ 
-                scale: 1.05, 
-                y: -10,
+                scale: 1.02,
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
               }}
               transition={{ duration: 0.3 }}
+              onClick={() => handleVideoClick(example.id)}
             >
-              {/* Shimmer effect on hover */}
-              <motion.div
-                className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full pointer-events-none"
-                style={{ transform: 'skewX(-20deg)' }}
-                transition={{ duration: 0.8 }}
-              />
-
-              {/* Placeholder with Gradient */}
-              <div className={`absolute inset-0 bg-linear-to-br ${example.gradient} opacity-80 group-hover:opacity-100 transition-all duration-300`}>
-                {/* Animated particles */}
-                <motion.div
-                  className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/40 rounded-full blur-sm"
-                  animate={{
-                    y: [0, -30, 0],
-                    opacity: [0.4, 0.8, 0.4],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.2,
-                  }}
-                />
-                <motion.div
-                  className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-white/30 rounded-full blur-sm"
-                  animate={{
-                    y: [0, 20, 0],
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.3,
-                  }}
-                />
-
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <motion.div
-                      className="text-6xl mb-4"
-                      whileHover={{ 
-                        rotate: [0, -10, 10, -10, 0],
-                        scale: 1.2,
-                      }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {example.type === "Reel" ? "🎬" : "📱"}
-                    </motion.div>
-                    <p className="text-lg font-semibold">{example.type} Example</p>
+              {/* Video Element for All Examples */}
+              <div className="absolute inset-0">
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={example.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                
+                {/* Video Overlay */}
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all"></div>
+                
+                {/* Play Icon Indicator on Hover */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center">
+                    <svg className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
                   </div>
                 </div>
-
-                {/* Pulsing ring effect */}
-                <motion.div
-                  className="absolute inset-0 border-4 border-white/30 rounded-3xl"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    opacity: [0.3, 0, 0.3],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                    delay: index * 0.4,
-                  }}
-                />
               </div>
-
-              {/* Hover Overlay */}
-              <motion.div
-                className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-              >
-                <motion.div
-                  className="bg-white/95 backdrop-blur-sm rounded-full px-6 py-3 text-navy-900 font-semibold shadow-lg"
-                  initial={{ scale: 0.8, y: 20 }}
-                  whileHover={{ scale: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  View Example
-                </motion.div>
-              </motion.div>
 
               {/* Type badge with animation */}
               <motion.div
-                className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-1.5 text-white text-sm font-semibold shadow-lg"
+                className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-1.5 text-white text-sm font-semibold shadow-lg z-10"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
@@ -326,6 +282,45 @@ export default function Examples() {
           </div>
         </motion.div>
       </div>
+
+      {/* Fullscreen Video Modal */}
+      {fullscreenVideo !== null && (
+        <motion.div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={closeFullscreen}
+        >
+          <button
+            onClick={closeFullscreen}
+            className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-10"
+            aria-label="Close fullscreen"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <motion.div
+            className="w-full max-w-4xl aspect-9/16 rounded-2xl overflow-hidden shadow-2xl"
+            initial={{ scale: 0.8, y: 50 }}
+            animate={{ scale: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              className="w-full h-full object-cover"
+              autoPlay
+              controls
+              loop
+            >
+              <source src={examples.find(ex => ex.id === fullscreenVideo)?.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 }

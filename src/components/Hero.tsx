@@ -54,7 +54,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
+    <section className="relative min-h-[80vh] pt-28 flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
       {/* Animated Background Gradients */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary-300/40 via-primary-200/30 to-transparent rounded-full blur-3xl"
@@ -126,10 +126,10 @@ export default function Hero({ onOpenForm }: HeroProps) {
           {/* Badge with Animation */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center mb-8"
+            className="inline-flex items-center mb-4"
           >
             <motion.span
-              className="badge bg-white/80 backdrop-blur-sm text-primary-700 border border-primary-300/50 shadow-lg px-6 py-2.5 text-sm md:text-base font-semibold"
+              className="badge bg-white/80 backdrop-blur-sm text-primary-700 border tracking-tight border-primary-300/50 shadow-lg px-4 py-2 text-sm md:text-lg font-semibold"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
               whileTap={{ scale: 0.95 }}
             >
@@ -140,7 +140,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
               >
                 ✨
               </motion.span>
-              Limited Time Offer - Absolutely Free
+              Simple way to see what we do
             </motion.span>
           </motion.div>
 
@@ -170,7 +170,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
           {/* Subheadline */}
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-600 mb-10 mx-auto leading-relaxed px-4 font-medium"
+            className="text-xl md:text-2xl text-gray-600 mb-10 mx-auto tracking-tighter px-4"
           >
             A simple preview of what your content will look like.
           </motion.p>
@@ -182,7 +182,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
           >
             <motion.button
               onClick={onOpenForm}
-              className="btn btn-primary text-base md:text-lg px-10 py-5 w-full sm:w-auto shadow-2xl relative overflow-hidden group"
+              className="btn btn-primary text-base md:text-2xl tracking-tight px-10 py-5 w-full sm:w-auto shadow-2xl relative overflow-hidden group"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 20 }}
@@ -202,59 +202,35 @@ export default function Hero({ onOpenForm }: HeroProps) {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className="text-sm md:text-base text-gray-500 flex items-center justify-center gap-3 flex-wrap px-4"
+            className="text-sm md:text-base text-gray-500 flex items-center justify-center gap-2 flex-wrap px-4"
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-1">
               <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              No credit card required
+              No contracts
             </span>
-            <span className="hidden sm:inline text-gray-300">•</span>
-            <span className="flex items-center gap-2">
+            <span className="hidden sm:inline text-gray-300">|</span>
+            <span className="flex items-center gap-1">
               <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              Setup in 2 minutes
+              No payments
+            </span>
+            <span className="hidden sm:inline text-gray-300">|</span>
+            <span className="flex items-center gap-1">
+              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              No pressure
             </span>
           </motion.p>
-
-          {/* Social Proof Stats */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-16 grid grid-cols-3 gap-8 mx-auto px-4"
-          >
-            {[
-              { number: "1000+", label: "Happy Creators" },
-              { number: "5000+", label: "Content Pieces" },
-              { number: "300%", label: "Avg. Growth" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="text-center"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div
-                  className="text-3xl md:text-4xl font-bold text-navy-900 mb-1"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1.5 + index * 0.1, type: "spring", stiffness: 200 }}
-                >
-                  {stat.number}
-                </motion.div>
-                <div className="text-sm md:text-base text-gray-600 font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-3 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.8 }}

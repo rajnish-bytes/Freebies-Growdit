@@ -126,16 +126,15 @@ export default function FAQ() {
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="inline-flex items-center mb-6"
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : { scale: 0 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            >
-              <span className="badge bg-gradient-to-r from-primary-50 to-purple-50 text-primary-700 border border-primary-200 shadow-md px-6 py-2.5 text-sm md:text-base font-semibold">
-                <span className="mr-2">❓</span>
-                FAQs
-              </span>
-            </motion.div>
+            className="inline-flex items-center mb-4"
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : { scale: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          >
+            <span className="badge bg-primary-800 text-primary-50 border border-primary-100 shadow-md px-4 py-2 text-sm md:text-base font-semibold">
+              FAQs
+            </span>
+          </motion.div>
             
             <motion.h2
               className="mb-6 text-navy-900 leading-tight px-4"
