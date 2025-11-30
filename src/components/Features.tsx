@@ -114,19 +114,19 @@ export default function Features() {
                   transition={{ delay: 0.7 + index * 0.2 }}
                 >
                   {/* Card Container */}
-                  <div className={`relative p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-linear-to-br ${item.color} backdrop-blur-sm border border-white/10`}>
-                    <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-6 md:gap-8">
+                  <div className={`relative pl-10 sm:pl-8  p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-linear-to-br ${item.color} backdrop-blur-sm border border-white/10`}>
+                    <div className="flex flex-row items-center sm:items-center gap-4 sm:gap-6 md:gap-8">
                       {/* Large Number */}
                       <div className="relative">
                         <div className="absolute inset-0 bg-white/10 blur-2xl rounded-full" />
-                        <div className="relative text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white leading-none">
+                        <div className="relative text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white leading-none">
                           {item.count}
                         </div>
                       </div>
 
                       {/* Content */}
-                      <div className="flex-1 text-center sm:text-left">
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+                      <div className="flex-1 text-left sm:text-left">
+                        <h3 className="text-4xl sm:text-3xl md:text-4xl font-bold text-white mb-0 tracking-tight">
                           {item.label}
                         </h3>
                         <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
@@ -136,7 +136,7 @@ export default function Features() {
                     </div>
 
                     {/* Accent Line */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/40 via-white/10 to-transparent" />
+                    {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-white/40 via-white/10 to-transparent" /> */}
                   </div>
                 </motion.div>
               ))}
@@ -153,7 +153,7 @@ export default function Features() {
             
             {/* What We Do */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-bold text-center text-white mb-6 tracking-tight">
                 What We Handle
               </h3>
               
@@ -167,13 +167,13 @@ export default function Features() {
                 ].map((service, idx) => (
                   <motion.div
                     key={idx}
-                    className="flex gap-4 items-start group"
+                    className="flex gap-4 items-start justify-center pl-10 group"
                     initial={{ opacity: 0, x: 20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                     transition={{ delay: 1 + idx * 0.1 }}
                   >
                     {/* Minimal Line Indicator */}
-                    <div className="hidden sm:block w-8 md:w-12 h-px bg-primary-400 mt-3 group-hover:w-12 md:group-hover:w-16 transition-all" />
+                    <div className="block w-8 md:w-12 h-px bg-primary-400 mt-3 group-hover:w-12 md:group-hover:w-16 transition-all" />
                     
                     <div className="flex-1">
                       <h4 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-1">
@@ -223,7 +223,7 @@ export default function Features() {
       </div>
 
       {/* Curved Bottom SVG */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <div className="absolute hidden md:block bottom-0 left-0 w-full overflow-hidden leading-none">
         <svg
           className="relative block w-full h-24 md:h-32"
           viewBox="0 0 1200 120"

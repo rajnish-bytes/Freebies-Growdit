@@ -106,7 +106,7 @@ export default function Header({ onOpenForm }: HeaderProps) {
 
           {/* CTA Button - Modern & Clean */}
           <motion.div 
-            className="hidden md:flex items-center"
+            className="hidden lg:flex items-center"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -168,8 +168,10 @@ export default function Header({ onOpenForm }: HeaderProps) {
               >
                 {[
                   { href: '#overview', label: 'Overview' },
-                  { href: '#HowItWorks', label: 'Process' },
-                  { href: '#testimonials', label: 'Testimonials' }
+                  { href: '#HowItWorks', label: 'How It Works' },
+                  { href: '#Examples', label: 'Examples' },
+                  { href: '#testimonials', label: 'Testimonials' },
+                  { href: '#FAQs', label: 'FAQ' }
                 ].map((item, index) => (
                   <motion.a
                     key={item.href}

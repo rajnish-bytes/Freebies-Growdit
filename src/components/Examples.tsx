@@ -5,6 +5,8 @@ export default function Examples() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [fullscreenVideo, setFullscreenVideo] = useState<number | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isManualControl, setIsManualControl] = useState(false);
   
   const examples = [
     {
@@ -48,6 +50,16 @@ export default function Examples() {
 
   const closeFullscreen = () => {
     setFullscreenVideo(null);
+  };
+
+  const handleNext = () => {
+    setIsManualControl(true);
+    setCurrentIndex((prev) => (prev + 1) % examples.length);
+  };
+
+  const handlePrev = () => {
+    setIsManualControl(true);
+    setCurrentIndex((prev) => (prev - 1 + examples.length) % examples.length);
   };
 
   return (
@@ -150,6 +162,38 @@ export default function Examples() {
 
       {/* Marquee Container with Fade Edges */}
       <div className="relative py-6">
+        {/* Left Navigation Button */}
+        <motion.button
+          onClick={handlePrev}
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ delay: 0.5 }}
+          aria-label="Previous example"
+        >
+          <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+          </svg>
+        </motion.button>
+
+        {/* Right Navigation Button */}
+        <motion.button
+          onClick={handleNext}
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+          transition={{ delay: 0.5 }}
+          aria-label="Next example"
+        >
+          <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+          </svg>
+        </motion.button>
+
         {/* Left Fade with glow effect */}
         <div className="absolute hidden md:block left-0 top-0 bottom-0 w-32 md:w-48 h-full bg-linear-to-r from-navy-800 via-navy-900/80 to-transparent z-10 pointer-events-none">
           <motion.div
@@ -187,15 +231,17 @@ export default function Examples() {
         <motion.div
           className="flex gap-6 md:gap-8"
           animate={{
-            x: ['0%', '-66.66%'],
+            x: isManualControl ? `${-currentIndex * (100 / 3)}%` : ['0%', '-66.66%'],
           }}
           transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 30,
-              ease: "linear",
-            },
+            x: isManualControl 
+              ? { duration: 0.5, ease: "easeInOut" }
+              : {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
           }}
         >
           {duplicatedExamples.map((example, index) => (

@@ -54,7 +54,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[80vh] pt-28 flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
+    <section className="relative pt-20 pb-10 md:pb-0 md:pt-32 flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
       {/* Animated Background Gradients */}
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary-300/40 via-primary-200/30 to-transparent rounded-full blur-3xl"
@@ -150,7 +150,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
             className="mb-6 text-navy-900 leading-[1.1] px-4"
           >
             <motion.span
-              className="block"
+              className="md:block"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -158,12 +158,12 @@ export default function Hero({ onOpenForm }: HeroProps) {
               Get a free week of content
             </motion.span>
             <motion.span
-              className="block text-gradient bg-gradient-to-r from-primary-600 via-primary-500 to-navy-600 bg-clip-text"
+              className="pl-2 md:pl-0 md:block text-gradient bg-gradient-to-r from-primary-600 via-primary-500 to-navy-600 bg-clip-text"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              for your personal brand.
+               for your personal brand.
             </motion.span>
           </motion.h1>
 
