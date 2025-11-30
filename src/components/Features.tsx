@@ -153,7 +153,7 @@ export default function Features() {
             
             {/* What We Do */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-center text-white mb-6 tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-bold text-start text-white mb-6 tracking-tight">
                 What We Handle
               </h3>
               
@@ -167,7 +167,7 @@ export default function Features() {
                 ].map((service, idx) => (
                   <motion.div
                     key={idx}
-                    className="flex gap-4 items-start justify-center pl-10 group"
+                    className="flex gap-4 items-start justify-center group"
                     initial={{ opacity: 0, x: 20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                     transition={{ delay: 1 + idx * 0.1 }}

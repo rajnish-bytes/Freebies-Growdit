@@ -1,48 +1,82 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
 
 export default function Examples() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [fullscreenVideo, setFullscreenVideo] = useState<number | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isManualControl, setIsManualControl] = useState(false);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   
   const examples = [
     {
       id: 1,
       type: "Reel",
       gradient: "from-blue-400 to-blue-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" // Replace with actual video
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
     },
     {
       id: 2,
       type: "Carousel",
       gradient: "from-gray-200 to-gray-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4" // Replace with actual video
+      videoUrl: "https://www.w3schools.com/html/movie.mp4"
     },
     {
       id: 3,
       type: "Reel",
-      gradient: "from-navy-400 to-navy-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" // Replace with actual video
+      gradient: "from-purple-400 to-purple-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
     },
     {
       id: 4,
       type: "Carousel",
-      gradient: "from-gray-200 to-gray-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4" // Replace with actual video
+      gradient: "from-pink-200 to-pink-300",
+      videoUrl: "https://www.w3schools.com/html/movie.mp4"
     },
     {
       id: 5,
       type: "Reel",
-      gradient: "from-navy-400 to-navy-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" // Replace with actual video
+      gradient: "from-cyan-400 to-cyan-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+    },
+    {
+      id: 6,
+      type: "Carousel",
+      gradient: "from-indigo-200 to-indigo-300",
+      videoUrl: "https://www.w3schools.com/html/movie.mp4"
+    },
+    {
+      id: 7,
+      type: "Reel",
+      gradient: "from-green-400 to-green-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+    },
+    {
+      id: 8,
+      type: "Carousel",
+      gradient: "from-orange-200 to-orange-300",
+      videoUrl: "https://www.w3schools.com/html/movie.mp4"
+    },
+    {
+      id: 9,
+      type: "Reel",
+      gradient: "from-red-400 to-red-600",
+      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+    },
+    {
+      id: 10,
+      type: "Carousel",
+      gradient: "from-teal-200 to-teal-300",
+      videoUrl: "https://www.w3schools.com/html/movie.mp4"
     }
   ];
-
-  // Duplicate for seamless loop
-  const duplicatedExamples = [...examples, ...examples, ...examples];
 
   const handleVideoClick = (id: number) => {
     setFullscreenVideo(id);
@@ -53,18 +87,19 @@ export default function Examples() {
   };
 
   const handleNext = () => {
-    setIsManualControl(true);
-    setCurrentIndex((prev) => (prev + 1) % examples.length);
+    swiperInstance?.slideNext();
   };
 
   const handlePrev = () => {
-    setIsManualControl(true);
-    setCurrentIndex((prev) => (prev - 1 + examples.length) % examples.length);
+    swiperInstance?.slidePrev();
+  };
+
+  const handleDotClick = (index: number) => {
+    swiperInstance?.slideTo(index);
   };
 
   return (
     <section className="bg-gradient-navy section-padding overflow-hidden relative" ref={ref} id="Examples">
-      {/* Animated Background Elements */}
       <motion.div
         className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
         animate={{
@@ -110,7 +145,6 @@ export default function Examples() {
         aria-hidden="true"
       />
 
-      {/* Decorative Pattern Overlay */}
       <div 
         className="absolute inset-0 opacity-5"
         style={{
@@ -120,7 +154,6 @@ export default function Examples() {
       />
 
       <div className="container-custom relative z-10">
-        {/* Section Header */}
         <motion.div
           className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: -30 }}
@@ -160,12 +193,10 @@ export default function Examples() {
         </motion.div>
       </div>
 
-      {/* Marquee Container with Fade Edges */}
       <div className="relative py-6">
-        {/* Left Navigation Button */}
         <motion.button
           onClick={handlePrev}
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
+          className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, x: -20 }}
@@ -173,15 +204,14 @@ export default function Examples() {
           transition={{ delay: 0.5 }}
           aria-label="Previous example"
         >
-          <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
         </motion.button>
 
-        {/* Right Navigation Button */}
         <motion.button
           onClick={handleNext}
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
+          className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, x: 20 }}
@@ -189,115 +219,103 @@ export default function Examples() {
           transition={{ delay: 0.5 }}
           aria-label="Next example"
         >
-          <svg className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
         </motion.button>
 
-        {/* Left Fade with glow effect */}
-        <div className="absolute hidden md:block left-0 top-0 bottom-0 w-32 md:w-48 h-full bg-linear-to-r from-navy-800 via-navy-900/80 to-transparent z-10 pointer-events-none">
-          <motion.div
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-40 bg-linear-to-b from-transparent via-blue-400/50 to-transparent blur-sm"
-            animate={{
-              opacity: [0.3, 0.6, 0.3],
-              scaleY: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-        
-        {/* Right Fade with glow effect */}
-        <div className="absolute hidden md:block right-0 top-0 bottom-0 w-32 md:w-48 bg-linear-to-l from-navy-900 via-navy-900/80 to-transparent z-10 pointer-events-none">
-          <motion.div
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-32 bg-linear-to-b from-transparent via-purple-400/50 to-transparent blur-sm"
-            animate={{
-              opacity: [0.3, 0.6, 0.3],
-              scaleY: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          />
-        </div>
-
-        {/* Marquee Animation */}
-        <motion.div
-          className="flex gap-6 md:gap-8"
-          animate={{
-            x: isManualControl ? `${-currentIndex * (100 / 3)}%` : ['0%', '-66.66%'],
+        <Swiper
+          onSwiper={setSwiperInstance}
+          modules={[Navigation, Pagination, EffectCoverflow]}
+          effect="coverflow"
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView="auto"
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
+            slideShadows: false,
           }}
-          transition={{
-            x: isManualControl 
-              ? { duration: 0.5, ease: "easeInOut" }
-              : {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 30,
-                  ease: "linear",
-                },
-          }}
+          loop={true}
+          className="w-full px-4 sm:px-8 md:px-16 lg:px-24"
         >
-          {duplicatedExamples.map((example, index) => (
-            <motion.article 
-              key={`${example.id}-${index}`}
-              className="group relative aspect-9/16 rounded-3xl overflow-hidden shadow-2xl cursor-pointer shrink-0 w-60 sm:w-80 lg:w-96"
-              whileHover={{ 
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-              }}
-              transition={{ duration: 0.3 }}
-              onClick={() => handleVideoClick(example.id)}
+          {examples.map((example, index) => (
+            <SwiperSlide
+              key={example.id}
+              className="!w-56 sm:!w-64 md:!w-72 lg:!w-80 xl:!w-96"
             >
-              {/* Video Element for All Examples */}
-              <div className="absolute inset-0">
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+              {({ isActive }) => (
+                <motion.article 
+                  className={`relative aspect-9/16 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-pointer transition-all duration-500 ${
+                    isActive 
+                      ? 'opacity-100 scale-100' 
+                      : 'opacity-100 scale-90 grayscale-50 blur-xs filter'
+                  }`}
+                  onClick={() => {
+                    if (isActive) {
+                      handleVideoClick(example.id);
+                    } else {
+                      swiperInstance?.slideTo(index);
+                    }
+                  }}
+                  whileHover={{ 
+                    scale: isActive ? 1.02 : 0.92,
+                  }}
                 >
-                  <source src={example.videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                
-                {/* Video Overlay */}
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all"></div>
-                
-                {/* Play Icon Indicator on Hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center">
-                    <svg className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
+                  <div className="absolute inset-0">
+                    <video
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source src={example.videoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    
+                    <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-all"></div>
+                    
+                    {isActive && (
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center">
+                          <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
 
-              {/* Type badge with animation */}
-              <motion.div
-                className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-1.5 text-white text-sm font-semibold shadow-lg z-10"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                {example.type}
-              </motion.div>
-            </motion.article>
+                  <motion.div
+                    className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-white text-xs sm:text-sm font-semibold shadow-lg z-10"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
+                  >
+                    {example.type}
+                  </motion.div>
+                </motion.article>
+              )}
+            </SwiperSlide>
           ))}
-        </motion.div>
+        </Swiper>
+      </div>
+
+      <div className="flex justify-center items-center gap-2 sm:gap-3 mt-8 md:mt-12">
+        {examples.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleDotClick(index)}
+            className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/30 hover:bg-white/50 transition-all duration-300"
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Note */}
         <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
@@ -308,12 +326,11 @@ export default function Examples() {
             ✨ Actual content will be customized to match your brand style and preferences
           </p>
 
-          {/* Feature badges */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             {['HD Quality', 'Professional Editing', 'Trending Audio', 'Custom Branding'].map((tag, idx) => (
               <motion.span
                 key={idx}
-                className="inline-flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-medium bg-white/10 border border-white/20 text-white backdrop-blur-sm"
+                className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-medium bg-white/10 border border-white/20 text-white backdrop-blur-sm"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
                 transition={{ delay: 1 + idx * 0.1 }}
@@ -329,7 +346,6 @@ export default function Examples() {
         </motion.div>
       </div>
 
-      {/* Fullscreen Video Modal */}
       {fullscreenVideo !== null && (
         <motion.div
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"

@@ -618,7 +618,7 @@ export default function InlineRegistrationForm() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 px-8 text-base font-semibold text-white rounded-lg transition-all duration-300 mt-8 relative overflow-hidden ${
+                  className={`w-full py-4 px-6 md:px-8 text-base font-semibold text-white rounded-lg transition-all duration-300 mt-8 relative overflow-hidden ${
                     isSubmitting
                       ? 'bg-gray-600 cursor-not-allowed opacity-70'
                       : 'bg-primary-600 hover:bg-primary-700 shadow-lg hover:shadow-xl'
@@ -636,7 +636,7 @@ export default function InlineRegistrationForm() {
                     />
                   )}
                   
-                  <span className="relative flex items-center justify-center gap-2.5">
+                  <span className="relative flex items-center justify-center gap-1 md:gap-2.5">
                     {isSubmitting ? (
                       <>
                         <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

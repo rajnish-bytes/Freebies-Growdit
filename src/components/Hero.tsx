@@ -147,7 +147,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
           {/* Main Headline with Stagger Animation */}
           <motion.h1
             variants={itemVariants}
-            className="mb-6 text-navy-900 leading-[1.1] px-4"
+            className="mb-4 md:mb-6 text-navy-900 leading-[1.1] px-4"
           >
             <motion.span
               className="md:block"
@@ -170,7 +170,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
           {/* Subheadline */}
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-600 mb-10 mx-auto tracking-tighter px-4"
+            className="text-base md:text-2xl text-gray-600 mb-6 md:mb-10 mx-auto tracking-tighter px-4"
           >
             A simple preview of what your content will look like.
           </motion.p>
@@ -182,7 +182,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
           >
             <motion.button
               onClick={onOpenForm}
-              className="btn btn-primary text-base md:text-2xl tracking-tight px-10 py-5 w-full sm:w-auto shadow-2xl relative overflow-hidden group"
+              className="btn btn-primary text-lg md:text-2xl tracking-tight md:px-10 md:py-5 w-auto shadow-2xl relative overflow-hidden group"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 20 }}
