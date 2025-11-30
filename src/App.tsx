@@ -6,7 +6,6 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Examples from './components/Examples';
 import Testimonials from './components/Testimonials';
-import CTA from './components/CTA';
 import FAQ from './components/FAQ';
 import InlineRegistrationForm from './components/InlineRegistrationForm';
 import Footer from './components/Footer';
@@ -50,9 +49,6 @@ function App() {
         <Examples />
         <Testimonials />
         <InlineRegistrationForm />
-        <CTA onOpenForm={() => {
-          document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
-        }} />
         <FAQ />
       </main>
       <Footer />
