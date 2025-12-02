@@ -1,58 +1,72 @@
-import { useEffect } from 'react';
-import Lenis from 'lenis';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
-import Examples from './components/Examples';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import InlineRegistrationForm from './components/InlineRegistrationForm';
-import Footer from './components/Footer';
+import { lazy, Suspense } from 'react';
+import { useSmoothScroll, useScrollTo } from '@hooks/index';
+import { Header } from '@components/sections';
+import { LoadingSpinner, PageLoader } from '@components/common';
+import ErrorBoundary from './components/ErrorBoundary';
+
+// Lazy load heavy components for better performance
+const Hero = lazy(() => import('@components/sections/Hero'));
+const Features = lazy(() => import('@components/sections/Features'));
+const HowItWorks = lazy(() => import('@components/sections/HowItWorks'));
+const Examples = lazy(() => import('@components/sections/Examples'));
+const Testimonials = lazy(() => import('@components/sections/Testimonials'));
+const FAQ = lazy(() => import('@components/sections/FAQ'));
+const InlineRegistrationForm = lazy(() => import('@components/forms/InlineRegistrationForm'));
+const Footer = lazy(() => import('@components/sections/Footer'));
 
 function App() {
+  // Use custom hooks
+  useSmoothScroll();
+  const { scrollToElement } = useScrollTo();
 
-  // Initialize smooth scrolling
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+  const scrollToRegister = () => {
+    scrollToElement('register', { offset: 80 });
+  };
 
   return (
-    <div className="min-h-screen">
-      <Header onOpenForm={() => {
-        document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
-      }} />
-      <main id="main-content">
-        <Hero onOpenForm={() => {
-          document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
-        }} />
-        <Features />
-        <HowItWorks />
-        <Examples />
-        <Testimonials />
-        <InlineRegistrationForm />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>
+    <ErrorBoundary>
+      <div className="min-h-screen">
+        {/* Header is loaded immediately (above the fold) */}
+        <Header onOpenForm={scrollToRegister} />
+        
+        <main id="main-content">
+          {/* Hero section with its own loading state */}
+          <Suspense fallback={<PageLoader />}>
+            <Hero onOpenForm={scrollToRegister} />
+          </Suspense>
+
+          {/* Other sections with loading spinner */}
+          <Suspense fallback={<LoadingSpinner />}>
+            <Features />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <HowItWorks />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <Examples />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <Testimonials />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <InlineRegistrationForm />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <FAQ />
+          </Suspense>
+        </main>
+
+        {/* Footer with minimal loading state */}
+        <Suspense fallback={<div className="h-32 bg-gray-900" />}>
+          <Footer />
+        </Suspense>
+      </div>
+    </ErrorBoundary>
   );
 }
 

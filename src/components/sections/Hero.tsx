@@ -178,7 +178,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
           {/* CTA Button with Enhanced Animation */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
           >
             <motion.button
               onClick={onOpenForm}
