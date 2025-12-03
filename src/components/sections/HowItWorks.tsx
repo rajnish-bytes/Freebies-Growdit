@@ -11,25 +11,37 @@ export default function HowItWorks() {
       step: "01",
       title: "Drop Your Footage",
       description: "Upload your raw clips — WeTransfer, Google Drive, Dropbox — whatever works for you.",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop"
+      image: "/process/Every Process image.png"
     },
     {
       step: "02",
       title: "We Do Our Magic",
       description: "We cut, trim, color-grade, and add engaging transitions.",
-      image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop"
+      image: "/process/Forum Image.png"
     },
     {
       step: "03",
       title: "Feedback? Easy",
       description: "Want something changed? We offer smooth revision rounds to make sure everything.",
-      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop"
+      image: "/process/Recording image.png"
     },
     {
       step: "04",
+      title: "We Do Our Magic",
+      description: "We cut, trim, color-grade, and add engaging transitions.",
+      image: "/process/Scripts Download Image.png"
+    },
+    {
+      step: "05",
+      title: "Feedback? Easy",
+      description: "Want something changed? We offer smooth revision rounds to make sure everything.",
+      image: "/process/WhatsApp Group image.png"
+    },
+    {
+      step: "06",
       title: "Upload & Grow",
       description: "We deliver your final video in ready-to-upload YouTube format.",
-      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=300&fit=crop"
+      image: "/process/Review Image.png"
     }
   ];
 
@@ -117,7 +129,7 @@ export default function HowItWorks() {
 
         {/* Steps Grid */}
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto"
+          className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 max-w-[60rem] mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

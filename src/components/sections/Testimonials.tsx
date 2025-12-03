@@ -11,42 +11,60 @@ export default function Testimonials() {
       role: "Content Creator",
       company: "SJ Media",
       content: "The quality of content I received was exceptional. My engagement increased by 300% in just the first week. Highly recommended for anyone serious about their personal brand!",
-      metric: "300% Growth"
+      metric: "300% Growth",
+      avatar: "https://i.pravatar.cc/150?img=1",
+      initials: "SJ",
+      color: "bg-blue-500"
     },
     {
       name: "Michael Chen",
       role: "Entrepreneur",
       company: "TechStart Inc",
       content: "I was skeptical at first, but the free week completely changed my mind. The reels were professionally edited and the carousels were perfectly designed for my audience.",
-      metric: "10K Followers"
+      metric: "10K Followers",
+      avatar: "https://i.pravatar.cc/150?img=12",
+      initials: "MC",
+      color: "bg-purple-500"
     },
     {
       name: "Emily Rodriguez",
       role: "Digital Marketer",
       company: "Growth Labs",
       content: "This service saved me countless hours. Instead of spending time creating content, I can focus on growing my business. The ROI has been incredible!",
-      metric: "20hrs Saved"
+      metric: "20hrs Saved",
+      avatar: "https://i.pravatar.cc/150?img=5",
+      initials: "ER",
+      color: "bg-pink-500"
     },
     {
       name: "David Williams",
       role: "Social Media Manager",
       company: "Brand Studio",
       content: "The team understood exactly what I needed. Every piece of content aligned perfectly with my brand voice and aesthetic. Can't imagine going back to creating content alone.",
-      metric: "Perfect Match"
+      metric: "Perfect Match",
+      avatar: "https://i.pravatar.cc/150?img=13",
+      initials: "DW",
+      color: "bg-green-500"
     },
     {
       name: "Jessica Park",
       role: "Influencer",
       company: "Lifestyle Brand",
       content: "Best decision I made for my personal brand this year. The content quality is consistently high, and my followers have noticed the improvement immediately.",
-      metric: "Premium Quality"
+      metric: "Premium Quality",
+      avatar: "https://i.pravatar.cc/150?img=9",
+      initials: "JP",
+      color: "bg-indigo-500"
     },
     {
       name: "Marcus Thompson",
       role: "Business Coach",
       company: "Success Academy",
       content: "Professional, creative, and results-driven. The free week proved the value, and I've been a paying customer ever since. This is the future of content creation!",
-      metric: "Long-term Partner"
+      metric: "Long-term Partner",
+      avatar: "https://i.pravatar.cc/150?img=14",
+      initials: "MT",
+      color: "bg-orange-500"
     }
   ];
 
@@ -135,24 +153,40 @@ export default function Testimonials() {
 
                 {/* Author Info */}
                 <div className="border-t border-gray-200 pt-6">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h4 className="font-semibold text-gray-900 text-base md:text-lg mb-1">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-sm text-gray-600 mb-0.5">
-                        {testimonial.role}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        {testimonial.company}
-                      </p>
+                  <div className="flex items-center gap-4">
+                    {/* Avatar */}
+                    <div className="relative shrink-0">
+                      <div className={`w-14 h-14 rounded-full ${testimonial.color} flex items-center justify-center text-white font-semibold text-lg shadow-md overflow-hidden ring-2 ring-white group-hover:ring-gray-900 transition-all`}>
+                        <img 
+                          src={testimonial.avatar} 
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                        <span className="hidden">{testimonial.initials}</span>
+                      </div>
+                      {/* Verified Badge on Avatar */}
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-gray-900 flex items-center justify-center ring-2 ring-white group-hover:bg-blue-500 transition-colors">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
                     </div>
                     
-                    {/* Modern Verified Badge */}
-                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 group-hover:bg-gray-900 transition-colors">
-                      <svg className="w-4 h-4 text-gray-900 group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+                    {/* Author Details */}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-gray-900 text-base md:text-lg mb-1 truncate">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-sm text-gray-600 mb-0.5 truncate">
+                        {testimonial.role}
+                      </p>
+                      <p className="text-xs text-gray-500 truncate">
+                        {testimonial.company}
+                      </p>
                     </div>
                   </div>
                 </div>

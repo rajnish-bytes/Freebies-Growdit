@@ -1,13 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
 
 export default function Examples() {
   const ref = useRef(null);
@@ -92,10 +91,6 @@ export default function Examples() {
 
   const handlePrev = () => {
     swiperInstance?.slidePrev();
-  };
-
-  const handleDotClick = (index: number) => {
-    swiperInstance?.slideTo(index);
   };
 
   return (
@@ -226,42 +221,49 @@ export default function Examples() {
 
         <Swiper
           onSwiper={setSwiperInstance}
-          modules={[Navigation, Pagination, EffectCoverflow]}
-          effect="coverflow"
+          modules={[Navigation, Pagination]}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView="auto"
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2.5,
-            slideShadows: false,
+          slidesPerView={1.5}
+          spaceBetween={16}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+              centeredSlides: false,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+              centeredSlides: false,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 28,
+              centeredSlides: false,
+            },
+            1280: {
+              slidesPerView: 5,
+              spaceBetween: 32,
+              centeredSlides: false,
+            },
           }}
           loop={true}
           className="w-full px-4 sm:px-8 md:px-16 lg:px-24"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+          }}
         >
           {examples.map((example, index) => (
             <SwiperSlide
               key={example.id}
-              className="!w-56 sm:!w-64 md:!w-72 lg:!w-80 xl:!w-96"
             >
-              {({ isActive }) => (
-                <motion.article 
-                  className={`relative aspect-9/16 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-pointer transition-all duration-500 ${
-                    isActive 
-                      ? 'opacity-100 scale-100' 
-                      : 'opacity-100 scale-90 grayscale-50 blur-xs filter'
-                  }`}
-                  onClick={() => {
-                    if (isActive) {
-                      handleVideoClick(example.id);
-                    } else {
-                      swiperInstance?.slideTo(index);
-                    }
-                  }}
+              <motion.article 
+                  className="relative aspect-9/16 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-pointer transition-all duration-500 hover:shadow-3xl"
+                  onClick={() => handleVideoClick(example.id)}
                   whileHover={{ 
-                    scale: isActive ? 1.02 : 0.92,
+                    scale: 1.05,
                   }}
                 >
                   <div className="absolute inset-0">
@@ -278,15 +280,13 @@ export default function Examples() {
                     
                     <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-all"></div>
                     
-                    {isActive && (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center">
-                          <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center">
+                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
                       </div>
-                    )}
+                    </div>
                   </div>
 
                   <motion.div
@@ -298,21 +298,9 @@ export default function Examples() {
                     {example.type}
                   </motion.div>
                 </motion.article>
-              )}
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-
-      <div className="flex justify-center items-center gap-2 sm:gap-3 mt-8 md:mt-12">
-        {examples.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/30 hover:bg-white/50 transition-all duration-300"
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
 
       <div className="container-custom relative z-10">

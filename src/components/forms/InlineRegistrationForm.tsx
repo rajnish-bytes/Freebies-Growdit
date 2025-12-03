@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import FlagIcon from '../common/FlagIcon';
 
 interface FormData {
   fullName: string;
@@ -31,9 +32,54 @@ export default function InlineRegistrationForm() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [countryCode, setCountryCode] = useState('+1');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [savedFormData, setSavedFormData] = useState<FormData | null>(null);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+
+  // Country data with ISO codes for flags and emoji flags for options
+  const countries = [
+    { code: '+1', name: 'US', iso: 'us', flag: '🇺🇸' },
+    { code: '+44', name: 'UK', iso: 'gb', flag: '🇬🇧' },
+    { code: '+91', name: 'India', iso: 'in', flag: '🇮🇳' },
+    { code: '+61', name: 'Australia', iso: 'au', flag: '🇦🇺' },
+    { code: '+971', name: 'UAE', iso: 'ae', flag: '🇦🇪' },
+    { code: '+81', name: 'Japan', iso: 'jp', flag: '🇯🇵' },
+    { code: '+86', name: 'China', iso: 'cn', flag: '🇨🇳' },
+    { code: '+49', name: 'Germany', iso: 'de', flag: '🇩🇪' },
+    { code: '+33', name: 'France', iso: 'fr', flag: '🇫🇷' },
+    { code: '+39', name: 'Italy', iso: 'it', flag: '🇮🇹' },
+    { code: '+34', name: 'Spain', iso: 'es', flag: '🇪🇸' },
+    { code: '+7', name: 'Russia', iso: 'ru', flag: '🇷🇺' },
+    { code: '+55', name: 'Brazil', iso: 'br', flag: '🇧🇷' },
+    { code: '+52', name: 'Mexico', iso: 'mx', flag: '🇲🇽' },
+    { code: '+27', name: 'South Africa', iso: 'za', flag: '🇿🇦' },
+    { code: '+82', name: 'South Korea', iso: 'kr', flag: '🇰🇷' },
+    { code: '+65', name: 'Singapore', iso: 'sg', flag: '🇸🇬' },
+    { code: '+60', name: 'Malaysia', iso: 'my', flag: '🇲🇾' },
+    { code: '+63', name: 'Philippines', iso: 'ph', flag: '🇵🇭' },
+    { code: '+66', name: 'Thailand', iso: 'th', flag: '🇹🇭' },
+    { code: '+62', name: 'Indonesia', iso: 'id', flag: '🇮🇩' },
+    { code: '+92', name: 'Pakistan', iso: 'pk', flag: '🇵🇰' },
+    { code: '+880', name: 'Bangladesh', iso: 'bd', flag: '🇧🇩' },
+    { code: '+94', name: 'Sri Lanka', iso: 'lk', flag: '🇱🇰' },
+    { code: '+977', name: 'Nepal', iso: 'np', flag: '🇳🇵' },
+    { code: '+64', name: 'New Zealand', iso: 'nz', flag: '🇳🇿' },
+    { code: '+353', name: 'Ireland', iso: 'ie', flag: '🇮🇪' },
+    { code: '+31', name: 'Netherlands', iso: 'nl', flag: '🇳🇱' },
+    { code: '+46', name: 'Sweden', iso: 'se', flag: '🇸🇪' },
+    { code: '+47', name: 'Norway', iso: 'no', flag: '🇳🇴' },
+    { code: '+41', name: 'Switzerland', iso: 'ch', flag: '🇨🇭' },
+    { code: '+32', name: 'Belgium', iso: 'be', flag: '🇧🇪' },
+    { code: '+351', name: 'Portugal', iso: 'pt', flag: '🇵🇹' },
+    { code: '+20', name: 'Egypt', iso: 'eg', flag: '🇪🇬' },
+    { code: '+234', name: 'Nigeria', iso: 'ng', flag: '🇳🇬' },
+    { code: '+254', name: 'Kenya', iso: 'ke', flag: '🇰🇪' },
+  ];
+
+  // Get current selected country
+  const selectedCountry = countries.find(c => c.code === countryCode) || countries[0];
 
   // Validation functions
   const validateEmail = (email: string): boolean => {
@@ -93,7 +139,7 @@ export default function InlineRegistrationForm() {
 
     // Website/LinkedIn validation
     if (!formData.websiteOrLinkedIn.trim()) {
-      newErrors.websiteOrLinkedIn = 'Website or LinkedIn URL is required';
+      newErrors.websiteOrLinkedIn = 'Website URL is required';
     } else if (!validateURL(formData.websiteOrLinkedIn)) {
       newErrors.websiteOrLinkedIn = 'Please enter a valid URL';
     }
@@ -143,22 +189,14 @@ export default function InlineRegistrationForm() {
         body: JSON.stringify(submissionData),
       });
 
-      // Success
-      setIsSuccess(true);
+      // Success - Save form data and show modal
+      setSavedFormData({ ...formData });
+      setShowSuccessModal(true);
       
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        setFormData({
-          fullName: '',
-          firmName: '',
-          email: '',
-          whatsapp: '',
-          websiteOrLinkedIn: '',
-          consent: false,
-        });
-        setIsSuccess(false);
-        setCountryCode('+1');
-      }, 5000);
+      // Auto-close modal after 10 seconds
+      // setTimeout(() => {
+      //   handleCloseModal();
+      // }, 10000);
       
     } catch (error) {
       console.error('Submission error:', error);
@@ -170,6 +208,20 @@ export default function InlineRegistrationForm() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    setFormData({
+      fullName: '',
+      firmName: '',
+      email: '',
+      whatsapp: '',
+      websiteOrLinkedIn: '',
+      consent: false,
+    });
+    setSavedFormData(null);
+    setCountryCode('+1');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -213,100 +265,8 @@ export default function InlineRegistrationForm() {
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-primary-800/50 to-transparent"></div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          {isSuccess ? (
-            <motion.div
-              key="success"
-              className="2xl mx-auto text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
-            >
-              {/* Success Animation */}
-              <motion.div
-                className="mb-8 inline-flex"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              >
-                <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <motion.path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ delay: 0.3, duration: 0.5 }}
-                    />
-                  </svg>
-                </div>
-              </motion.div>
-
-              <motion.h2
-                className="text-3xl md:text-4xl font-bold text-white mb-4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                Registration Successful!
-              </motion.h2>
-
-              <motion.p
-                className="text-lg text-gray-200 mb-8"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                Thanks, <strong className="text-white">{formData.fullName}</strong>!
-                <br />
-                We've sent a confirmation email to <strong className="text-white">{formData.email}</strong>
-              </motion.p>
-
-              <motion.div
-                className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-white/20"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                <h3 className="font-bold text-xl text-white mb-4">What's Next?</h3>
-                <ul className="text-left text-gray-200 space-y-3 md mx-auto">
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <span>Check your email for confirmation and next steps</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <span>We'll contact you on WhatsApp within 24 hours</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <span>Prepare to receive 5 Reels + 2 Carousels for free!</span>
-                  </li>
-                </ul>
-              </motion.div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="form"
+        <motion.div
               className="mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
             >
               {/* Header */}
               <div className="text-center mb-12 3xl mx-auto">
@@ -487,28 +447,72 @@ export default function InlineRegistrationForm() {
                       </div>
                     </label>
                     <div className="flex gap-3">
+                      {/* Custom Country Dropdown */}
                       <div className="relative">
-                        <select
-                          value={countryCode}
-                          onChange={(e) => setCountryCode(e.target.value)}
-                          className="appearance-none pl-3 pr-8 py-3 border-2 border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-400 bg-white/5 text-white hover:border-white/30 transition-all cursor-pointer min-w-[110px]"
+                        <button
+                          type="button"
+                          onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                          className="appearance-none pl-10 pr-8 py-3 border-2 border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-400 bg-white/5 text-white hover:border-white/30 transition-all cursor-pointer min-w-40 text-sm text-left"
                         >
-                          <option value="+1" className="bg-gray-800">🇺🇸 +1</option>
-                          <option value="+44" className="bg-gray-800">🇬🇧 +44</option>
-                          <option value="+91" className="bg-gray-800">🇮🇳 +91</option>
-                          <option value="+61" className="bg-gray-800">🇦🇺 +61</option>
-                          <option value="+81" className="bg-gray-800">🇯🇵 +81</option>
-                          <option value="+86" className="bg-gray-800">🇨🇳 +86</option>
-                          <option value="+49" className="bg-gray-800">🇩🇪 +49</option>
-                          <option value="+33" className="bg-gray-800">🇫🇷 +33</option>
-                          <option value="+39" className="bg-gray-800">🇮🇹 +39</option>
-                          <option value="+34" className="bg-gray-800">🇪🇸 +34</option>
-                          <option value="+55" className="bg-gray-800">🇧🇷 +55</option>
-                          <option value="+52" className="bg-gray-800">🇲🇽 +52</option>
-                        </select>
-                        <svg className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          {selectedCountry.code}
+                        </button>
+                        
+                        {/* Flag icon overlay on the left */}
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                          <FlagIcon countryCode={selectedCountry.iso} className="w-5 h-4" />
+                        </div>
+                        
+                        {/* Dropdown arrow on the right */}
+                        <svg 
+                          className={`absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none transition-transform duration-200 ${isCountryDropdownOpen ? 'rotate-180' : ''}`} 
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
+                        >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
+
+                        {/* Dropdown Menu */}
+                        <AnimatePresence>
+                          {isCountryDropdownOpen && (
+                            <>
+                              {/* Backdrop to close dropdown when clicking outside */}
+                              <div 
+                                className="fixed inset-0 z-10" 
+                                onClick={() => setIsCountryDropdownOpen(false)}
+                              />
+                              
+                              {/* Options List with Perfect Scrolling */}
+                              <motion.div
+                                className="absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto bg-gray-800/95 backdrop-blur-sm border-2 border-white/20 rounded-lg shadow-2xl z-20 custom-dropdown-scroll"
+                                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                                transition={{ duration: 0.15 }}
+                                onWheel={(e) => e.stopPropagation()}
+                                onTouchMove={(e) => e.stopPropagation()}
+                              >
+                                {countries.map((country) => (
+                                  <button
+                                    key={country.code}
+                                    type="button"
+                                    onClick={() => {
+                                      setCountryCode(country.code);
+                                      setIsCountryDropdownOpen(false);
+                                    }}
+                                    className={`w-full px-3 py-2.5 text-left text-sm hover:bg-white/10 transition-colors flex items-center gap-3 ${
+                                      countryCode === country.code ? 'bg-blue-500/20 text-white font-medium' : 'text-gray-300'
+                                    }`}
+                                  >
+                                    <FlagIcon countryCode={country.iso} className="w-5 h-4 shrink-0" />
+                                    <span className="font-medium">{country.code}</span>
+                                    <span className="text-gray-400 text-xs">({country.name})</span>
+                                  </button>
+                                ))}
+                              </motion.div>
+                            </>
+                          )}
+                        </AnimatePresence>
                       </div>
                       <div className="relative flex-1">
                         <input
@@ -547,7 +551,7 @@ export default function InlineRegistrationForm() {
                       Website or LinkedIn URL <span className="text-red-400">*</span>
                     </label>
                     <input
-                      type="url"
+                      type="text"
                       id="websiteOrLinkedIn"
                       name="websiteOrLinkedIn"
                       value={formData.websiteOrLinkedIn}
@@ -683,9 +687,145 @@ export default function InlineRegistrationForm() {
                 </div>
               </motion.form>
             </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && savedFormData && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseModal}
+          >
+            <motion.div
+              className="bg-white rounded-3xl shadow-2xl max-w-[40rem] w-full overflow-hidden"
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Success Header with Animation */}
+              <div className="bg-linear-to-br from-primary-600 to-primary-800 p-8 text-center relative overflow-hidden">
+                <motion.div
+                  className="absolute inset-0 bg-white/10"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.3, 0.1, 0.3],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                
+                <motion.div
+                  className="mb-4 inline-flex"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <svg className="w-10 h-10 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <motion.path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M5 13l4 4L19 7"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
+                      />
+                    </svg>
+                  </div>
+                </motion.div>
+
+                <motion.h2
+                  className="text-3xl font-bold text-white"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Registration Successful! 🎉
+                </motion.h2>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-4 md:p-8">
+                <motion.p
+                  className="text-lg text-gray-700 mb-6 text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  Thanks, <strong className="text-gray-900">{savedFormData.fullName}</strong>!
+                  <br />
+                  We've sent a confirmation email to{' '}
+                  <strong className="text-gray-900">{savedFormData.email}</strong>
+                </motion.p>
+
+                <motion.div
+                  className="bg-gray-50 rounded-xl p-4 md:p-6 mb-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <h3 className="font-bold text-lg text-gray-900 mb-4 text-center">
+                    What's Next?
+                  </h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 text-sm">
+                        Check your email for confirmation and next steps
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 text-sm">
+                        We'll contact you on WhatsApp within 24 hours
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 text-sm">
+                        Prepare to receive 5 Reels + 2 Carousels for free!
+                      </span>
+                    </li>
+                  </ul>
+                </motion.div>
+
+                <motion.button
+                  onClick={handleCloseModal}
+                  className="w-full py-3 px-6 btn-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  OK, Got It!
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

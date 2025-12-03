@@ -40,7 +40,7 @@ export default class ErrorBoundary extends Component<Props, State> {
 
       return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+          <div className="max-w-[50rem] w-full bg-white rounded-lg shadow-lg p-8 text-center">
             <div className="mb-6">
               <svg
                 className="mx-auto h-16 w-16 text-red-500"
