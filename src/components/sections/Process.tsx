@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-export default function HowItWorks() {
+export default function Process() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -68,7 +68,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="relative bg-white section-padding overflow-hidden" id="HowItWorks">
+    <section className="relative bg-white section-padding overflow-hidden" id="Process">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -154,14 +154,14 @@ export default function HowItWorks() {
 
                 {/* Image Placeholder */}
                 <motion.div
-                  className="mb-6 rounded-2xl overflow-hidden bg-linear-to-br from-gray-100 to-gray-50 aspect-3/2 relative"
+                  className="mb-6 rounded-2xl overflow-hidden bg-linear-to-br from-gray-100 to-gray-50 aspect-5/3 relative"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
                   <img 
                     src={item.image} 
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover scale-105"
                     loading="lazy"
                   />
                   {/* Overlay for placeholder effect */}

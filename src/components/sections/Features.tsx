@@ -11,15 +11,16 @@ export default function Features() {
       count: "5", 
       label: "Reels",
       detail: "Professional short-form video content",
-      color: "from-blue-500/20 to-cyan-500/20",
+      color: "from-primary-700 to-primary-900",
       accent: "blue"
     },
     { 
       count: "2", 
       label: "Carousels",
       detail: "Engaging multi-slide visual posts",
-      color: "from-purple-500/20 to-pink-500/20",
-      accent: "purple"
+      //color: "from-primary-700 to-primary-900",
+      color: "from-primary-700 to-primary-900",
+      accent: "blue"
     }
   ];
 
@@ -69,7 +70,7 @@ export default function Features() {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
             <span className="badge bg-primary-200/10 text-primary-100   shadow-md px-4 py-2 text-sm md:text-base font-semibold">
-              Simple Process
+              Overview
             </span>
           </motion.div>
           
@@ -81,7 +82,7 @@ export default function Features() {
           >
             Complete Week of Content,
             <br />
-            <span className="text-gray-400">Ready to Publish</span>
+            <span className="bg-gradient-to-b from-primary-500 to-primary-600 bg-clip-text text-transparent">Ready to Publish</span>
           </motion.h2>
 
           <motion.p

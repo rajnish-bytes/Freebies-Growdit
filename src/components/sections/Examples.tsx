@@ -19,62 +19,44 @@ export default function Examples() {
       id: 1,
       type: "Reel",
       gradient: "from-blue-400 to-blue-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+      videoUrl: "https://www.youtube.com/embed/p8TUR3itK4M"
     },
     {
       id: 2,
       type: "Carousel",
       gradient: "from-gray-200 to-gray-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
+      videoUrl: "https://www.youtube.com/embed/YBjd5rNi8wE"
     },
     {
       id: 3,
       type: "Reel",
       gradient: "from-purple-400 to-purple-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+      videoUrl: "https://www.youtube.com/embed/-C36J87hju0"
     },
     {
       id: 4,
       type: "Carousel",
       gradient: "from-pink-200 to-pink-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
+      videoUrl: "https://www.youtube.com/embed/xQDeiDMpN84"
     },
     {
       id: 5,
       type: "Reel",
       gradient: "from-cyan-400 to-cyan-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+      videoUrl: "https://www.youtube.com/embed/EdrIybETwBk"
     },
     {
       id: 6,
       type: "Carousel",
       gradient: "from-indigo-200 to-indigo-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
+      videoUrl: "https://www.youtube.com/embed/FBih9irDRcg"
     },
     {
       id: 7,
       type: "Reel",
       gradient: "from-green-400 to-green-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
+      videoUrl: "https://www.youtube.com/embed/rWgLufPBQdo"
     },
-    {
-      id: 8,
-      type: "Carousel",
-      gradient: "from-orange-200 to-orange-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
-    },
-    {
-      id: 9,
-      type: "Reel",
-      gradient: "from-red-400 to-red-600",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-      id: 10,
-      type: "Carousel",
-      gradient: "from-teal-200 to-teal-300",
-      videoUrl: "https://www.w3schools.com/html/movie.mp4"
-    }
   ];
 
   const handleVideoClick = (id: number) => {
@@ -162,28 +144,37 @@ export default function Examples() {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
             <span className="badge bg-white/20 backdrop-blur-sm text-white border border-white/30 shadow-lg">
-              <span className="mr-2">🎨</span>
-              Portfolio
+              Example Contents
             </span>
           </motion.div>
           <motion.h2
+            className="text-white mb-6 leading-[1.1] tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.3 }}
+          >
+           Preview of what we deliver in a
+            <br />
+            <span className="bg-gradient-to-b from-primary-500 to-primary-600 bg-clip-text text-transparent">free content week</span>
+          </motion.h2>
+          {/* <motion.h2
             className="mb-4 text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             Examples from our{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-300 via-purple-300 to-pink-300">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-primary-500">
               free content week.
             </span>
-          </motion.h2>
+          </motion.h2> */}
           <motion.p
             className="text-gray-300 text-lg mx-auto"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Sample creations of the work you'll receive in the free week.
+            A quick look at the actual work produced for founders like you.
           </motion.p>
         </motion.div>
       </div>
@@ -267,18 +258,16 @@ export default function Examples() {
                   }}
                 >
                   <div className="absolute inset-0">
-                    <video
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source src={example.videoUrl} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <iframe
+                      className="w-full h-full object-cover pointer-events-none"
+                      src={`${example.videoUrl}?autoplay=1&mute=1&loop=1&playlist=${example.videoUrl.split('/').pop()}&controls=0&modestbranding=1&playsinline=1`}
+                      title={`${example.type} example`}
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      style={{ border: 'none' }}
+                    />
                     
-                    <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-all"></div>
+                    <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-all pointer-events-none"></div>
                     
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center">
@@ -311,7 +300,7 @@ export default function Examples() {
           transition={{ delay: 0.8, duration: 0.8 }}
         >
           <p className="text-gray-300 text-sm mb-6">
-            ✨ Actual content will be customized to match your brand style and preferences
+            Actual content will be customized to match your branding style and preferences
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -336,7 +325,7 @@ export default function Examples() {
 
       {fullscreenVideo !== null && (
         <motion.div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -344,33 +333,36 @@ export default function Examples() {
         >
           <button
             onClick={closeFullscreen}
-            className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-10"
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/60 hover:bg-black/80 border border-white/40 flex items-center justify-center text-white transition-all z-[100] backdrop-blur-sm shadow-lg"
             aria-label="Close fullscreen"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
           <motion.div
-            className="w-full max-w-4xl aspect-9/16 rounded-2xl overflow-hidden shadow-2xl"
-            initial={{ scale: 0.8, y: 50 }}
-            animate={{ scale: 1, y: 0 }}
+            className="w-full sm:w-auto h-full sm:h-auto max-w-[500px] max-h-[95vh] rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl"
+            style={{
+              aspectRatio: '9/16',
+            }}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <video
-              className="w-full h-full object-cover"
-              autoPlay
-              controls
-              loop
-            >
-              <source src={examples.find(ex => ex.id === fullscreenVideo)?.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              className="w-full h-full"
+              src={`${examples.find(ex => ex.id === fullscreenVideo)?.videoUrl}?autoplay=1&controls=1&loop=1&playlist=${examples.find(ex => ex.id === fullscreenVideo)?.videoUrl.split('/').pop()}`}
+              title="Video example fullscreen"
+              allow="autoplay; encrypted-media; fullscreen"
+              allowFullScreen
+              style={{ border: 'none' }}
+            />
           </motion.div>
         </motion.div>
       )}
     </section>
   );
 }
+

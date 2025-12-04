@@ -81,7 +81,7 @@ export default function Header({ onOpenForm }: HeaderProps) {
           >
             {[
               { href: '#overview', label: 'Overview' },
-              { href: '#HowItWorks', label: 'How It Works' },
+              { href: '#Process', label: 'Process' },
               { href: '#Examples', label: 'Examples' },
               { href: '#testimonials', label: 'Testimonials' },
               { href: '#FAQs', label: 'FAQ' }
@@ -95,6 +95,13 @@ export default function Header({ onOpenForm }: HeaderProps) {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 style={{ transitionDelay: `${0.2 + index * 0.05}s` }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.querySelector(item.href);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
               >
                 {item.label}
                 
@@ -168,7 +175,7 @@ export default function Header({ onOpenForm }: HeaderProps) {
               >
                 {[
                   { href: '#overview', label: 'Overview' },
-                  { href: '#HowItWorks', label: 'How It Works' },
+                  { href: '#Process', label: 'Process' },
                   { href: '#Examples', label: 'Examples' },
                   { href: '#testimonials', label: 'Testimonials' },
                   { href: '#FAQs', label: 'FAQ' }
@@ -177,7 +184,14 @@ export default function Header({ onOpenForm }: HeaderProps) {
                     key={item.href}
                     href={item.href}
                     className="flex items-center justify-between px-4 py-3 text-gray-700 hover:text-gray-900 font-medium rounded-lg hover:bg-gray-50 transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(item.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                      setIsMobileMenuOpen(false);
+                    }}
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}

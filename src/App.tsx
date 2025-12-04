@@ -7,7 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 // Lazy load heavy components for better performance
 const Hero = lazy(() => import('@components/sections/Hero'));
 const Features = lazy(() => import('@components/sections/Features'));
-const HowItWorks = lazy(() => import('@components/sections/HowItWorks'));
+const HowItWorks = lazy(() => import('@/components/sections/Process'));
 const Examples = lazy(() => import('@components/sections/Examples'));
 const Testimonials = lazy(() => import('@components/sections/Testimonials'));
 const FAQ = lazy(() => import('@components/sections/FAQ'));
