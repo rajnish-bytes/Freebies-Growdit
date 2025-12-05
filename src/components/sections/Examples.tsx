@@ -251,7 +251,7 @@ export default function Examples() {
               key={example.id}
             >
               <motion.article 
-                  className="relative aspect-9/16 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-pointer transition-all duration-500 hover:shadow-3xl"
+                  className="relative aspect-9/16 rounded-2xl sm:rounded-3xl shadow-2xl cursor-pointer transition-all duration-500 hover:shadow-3xl"
                   onClick={() => handleVideoClick(example.id)}
                   whileHover={{ 
                     scale: 1.05,
@@ -325,7 +325,7 @@ export default function Examples() {
 
       {fullscreenVideo !== null && (
         <motion.div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 sm:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -341,8 +341,8 @@ export default function Examples() {
             </svg>
           </button>
 
-          <motion.div
-            className="w-full sm:w-auto h-full sm:h-auto max-w-[500px] max-h-[95vh] rounded-lg sm:rounded-2xl overflow-hidden shadow-2xl"
+            <motion.div
+            className="w-full max-w-[min(90vw,400px)] mx-auto"
             style={{
               aspectRatio: '9/16',
             }}
@@ -350,16 +350,16 @@ export default function Examples() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             onClick={(e) => e.stopPropagation()}
-          >
+            >
             <iframe
-              className="w-full h-full"
+              className="w-full h-full rounded-lg sm:rounded-2xl"
               src={`${examples.find(ex => ex.id === fullscreenVideo)?.videoUrl}?autoplay=1&controls=1&loop=1&playlist=${examples.find(ex => ex.id === fullscreenVideo)?.videoUrl.split('/').pop()}`}
               title="Video example fullscreen"
               allow="autoplay; encrypted-media; fullscreen"
               allowFullScreen
               style={{ border: 'none' }}
             />
-          </motion.div>
+            </motion.div>
         </motion.div>
       )}
     </section>
