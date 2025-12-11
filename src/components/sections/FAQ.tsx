@@ -99,7 +99,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-white to-gray-50 section-padding overflow-hidden" id="FAQs">
+    <section className="relative section-padding overflow-hidden" id="FAQs">
       <div className="container-custom relative z-10">
         <div className="mx-auto">
           {/* Section Header */}
@@ -124,7 +124,7 @@ export default function FAQ() {
             >
               Got Questions?
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r via-primary-500 from-primary-600 to-primary-600">
                 We Got Answers
               </span>
             </h2>

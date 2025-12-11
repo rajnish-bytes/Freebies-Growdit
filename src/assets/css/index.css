@@ -98,7 +98,7 @@ html {
   }
   
   body {
-    @apply bg-white text-gray-900 antialiased m-0 min-h-screen;
+    @apply bg-[#F7FAFC] text-gray-900 antialiased m-0 min-h-screen;
     font-family: var(--font-sans);
   }
 

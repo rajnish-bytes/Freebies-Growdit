@@ -284,7 +284,7 @@ export default function InlineRegistrationForm() {
                   className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
                 >
                   Start Your Free
-                  <span className="block mt-2 text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-pink-400">
+                  <span className="block mt-2 text-transparent bg-clip-text bg-linear-to-r via-primary-500 from-primary-600 to-primary-600 ">
                     Content Week
                   </span>
                 </h2>

@@ -64,7 +64,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="relative bg-white section-padding overflow-hidden" id="testimonials">
+    <section className="relative section-padding overflow-hidden" id="testimonials">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
