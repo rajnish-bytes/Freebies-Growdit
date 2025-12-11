@@ -1,11 +1,5 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 
 export default function Process() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const steps = [
     {
       step: "01",
@@ -45,28 +39,6 @@ export default function Process() {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.6, -0.05, 0.01, 0.99] as const,
-      },
-    },
-  };
-
   return (
     <section className="relative bg-white section-padding overflow-hidden" id="Process">
       {/* Background Pattern */}
@@ -75,72 +47,54 @@ export default function Process() {
       }} aria-hidden="true" />
 
       {/* Decorative Gradient Orbs */}
-      <motion.div
+      <div
         className="absolute top-20 right-10 w-96 h-96 bg-linear-to-br from-primary-200/30 to-purple-200/30 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
         aria-hidden="true"
       />
 
-      <div className="container-custom relative z-10" ref={ref}>
+      <div className="container-custom relative z-10">
         {/* Section Header */}
-        <motion.div
+        <div
           className="text-center mb-16 md:mb-20 mx-auto"
-          initial={{ opacity: 0, y: -30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.8 }}
+          data-aos="fade-up"
         >
-          <motion.div
+          <div
             className="inline-flex items-center mb-4"
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            data-aos="fade-up"
+            data-aos-delay="100"
           >
             <span className="badge bg-primary-800 text-primary-50 border border-primary-100 shadow-md px-4 py-2 text-sm md:text-base font-semibold">
               Simple Process
             </span>
-          </motion.div>
+          </div>
           
-          <motion.h2
+          <h2
             className="mb-4 text-navy-900 leading-tight px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            data-aos="fade-up"
+            data-aos-delay="200"
           >
             How it works?
-          </motion.h2>
+          </h2>
 
-          <motion.p
+          <p
             className="text-gray-600 text-lg md:text-xl tracking-tight px-4"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            data-aos="fade-up"
+            data-aos-delay="300"
           >
             A quick overview of how we build your entire content week
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Steps Grid */}
-        <motion.div
+        <div
           className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 max-w-[60rem] mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
         >
           {steps.map((item, index) => (
-            <motion.article
+            <article
               key={index}
-              variants={itemVariants}
-              className="group relative"
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
+              className="group relative hover:-translate-y-1 transition-transform"
+              data-aos="fade-up"
+              data-aos-delay={100 * index}
             >
               {/* Card */}
               <div className="relative bg-white rounded-3xl p-4 md:p-6 border border-gray-300/60 border-dashed hover:border-gray-400/80 transition-all h-full shadow-sm hover:shadow-md">
@@ -153,10 +107,8 @@ export default function Process() {
                 </div>
 
                 {/* Image Placeholder */}
-                <motion.div
-                  className="mb-6 rounded-2xl overflow-hidden bg-linear-to-br from-gray-100 to-gray-50 aspect-5/3 relative"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                <div
+                  className="mb-6 rounded-2xl overflow-hidden bg-linear-to-br from-gray-100 to-gray-50 aspect-5/3 relative hover:scale-105 transition-transform"
                 >
                   <img 
                     src={item.image} 
@@ -166,7 +118,7 @@ export default function Process() {
                   />
                   {/* Overlay for placeholder effect */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/5 to-transparent pointer-events-none" />
-                </motion.div>
+                </div>
 
                 {/* Content */}
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 tracking-tight leading-tight">
@@ -176,9 +128,9 @@ export default function Process() {
                   {item.description}
                 </p>
               </div>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

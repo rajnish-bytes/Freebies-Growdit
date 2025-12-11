@@ -1,10 +1,5 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 
 export default function Testimonials() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const testimonials = [
     {
       name: "Sarah Johnson",
@@ -71,44 +66,39 @@ export default function Testimonials() {
   return (
     <section className="relative bg-white section-padding overflow-hidden" id="testimonials">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <motion.div
+        <div
           className="text-center mb-16 md:mb-20 mx-auto"
-          initial={{ opacity: 0, y: -30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.8 }}
+          data-aos="fade-up"
         >
-          <motion.div
+          <div
             className="inline-flex items-center mb-4"
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            data-aos="fade-up"
+            data-aos-delay="100"
           >
             <span className="badge bg-primary-800 text-primary-50 border border-primary-100 shadow-md px-4 py-2 text-sm md:text-base font-semibold">
               Testimonial
             </span>
-          </motion.div>
+          </div>
           
-          <motion.h2
+          <h2
             className="mb-6 text-navy-900 leading-tight px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            data-aos="fade-up"
+            data-aos-delay="200"
           >
             What our clients say
-          </motion.h2>
+          </h2>
 
-          <motion.p
+          <p
             className="text-gray-600 text-lg md:text-xl leading-relaxed px-4"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            data-aos="fade-up"
+            data-aos-delay="300"
           >
             Real results from real creators who transformed their brand with our content.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Grid Container with Lines */}
         <div className="relative">
@@ -116,12 +106,11 @@ export default function Testimonials() {
           {/* Testimonials Grid with Dividers */}
           <div className="grid lg:grid-cols-3 gap-0">
             {testimonials.map((testimonial, index) => (
-              <motion.article
+              <article
                 key={index}
                 className="relative p-8 md:p-10 bg-white border-b border-r border-gray-200 lg:last:border-r-0 lg:nth-[3n]:border-r-0 nth-last-[-n+3]:border-b-0 group hover:bg-gray-50 transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
+                data-aos="fade-up"
+                data-aos-delay={100 * index}
               >
                 
                 {/* Modern Gradient Accent */}
@@ -191,7 +180,7 @@ export default function Testimonials() {
                   </div>
                 </div>
               
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>

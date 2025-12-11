@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import FlagIcon from '../common/FlagIcon';
 
 interface FormData {
@@ -265,16 +264,13 @@ export default function InlineRegistrationForm() {
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-primary-800/50 to-transparent"></div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <div
               className="mx-auto"
             >
               {/* Header */}
               <div className="text-center mb-12 3xl mx-auto">
-                <motion.div
+                <div
                   className="inline-flex items-center mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
                 >
                   <span className="inline-flex items-center bg-white/10 backdrop-blur-sm text-white border border-white/20 px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     <svg className="w-4 h-4 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -282,40 +278,30 @@ export default function InlineRegistrationForm() {
                     </svg>
                     Limited Time Offer
                   </span>
-                </motion.div>
+                </div>
 
-                <motion.h2 
+                <h2 
                   className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
                 >
                   Start Your Free
                   <span className="block mt-2 text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-pink-400">
                     Content Week
                   </span>
-                </motion.h2>
+                </h2>
 
-                <motion.p 
+                <p 
                   className="text-lg md:text-xl text-gray-300 leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
+>
                   Get <strong className="text-white">5 professional Reels + 2 engaging Carousels</strong> delivered to you.
                   <br className="hidden sm:block" />
                   No credit card required. Fill out the form below to get started.
-                </motion.p>
+                </p>
               </div>
 
               {/* Error Message */}
-              <AnimatePresence>
-                {submitError && (
-                  <motion.div
+              {submitError && (
+                <div
                     className="mb-8 p-4 bg-red-500/10 backdrop-blur-sm border-l-4 border-red-500 rounded-r-lg 3xl mx-auto"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
                   >
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -323,17 +309,13 @@ export default function InlineRegistrationForm() {
                       </svg>
                       <p className="text-red-200 font-medium text-sm">{submitError}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 )}
-              </AnimatePresence>
 
               {/* Form */}
-              <motion.form 
+              <form 
                 onSubmit={handleSubmit} 
                 className="max-w-200 mx-auto bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-8 md:p-10 border border-white/20"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Full Name */}
@@ -352,21 +334,16 @@ export default function InlineRegistrationForm() {
                       }`}
                       placeholder="John Doe"
                     />
-                    <AnimatePresence>
-                      {errors.fullName && (
-                        <motion.p
-                          className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                          </svg>
-                          {errors.fullName}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {errors.fullName && (
+                      <p
+                        className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.fullName}
+                      </p>
+                    )}
                   </div>
 
                   {/* Firm Name */}
@@ -385,21 +362,16 @@ export default function InlineRegistrationForm() {
                       }`}
                       placeholder="Your Company Name"
                     />
-                    <AnimatePresence>
-                      {errors.firmName && (
-                        <motion.p
-                          className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                          </svg>
-                          {errors.firmName}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {errors.firmName && (
+                      <p
+                        className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.firmName}
+                      </p>
+                    )}
                   </div>
 
                   {/* Work Email */}
@@ -418,21 +390,16 @@ export default function InlineRegistrationForm() {
                       }`}
                       placeholder="john@company.com"
                     />
-                    <AnimatePresence>
-                      {errors.email && (
-                        <motion.p
-                          className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                          </svg>
-                          {errors.email}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {errors.email && (
+                      <p
+                        className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
 
                   {/* WhatsApp Number */}
@@ -452,7 +419,7 @@ export default function InlineRegistrationForm() {
                         <button
                           type="button"
                           onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                          className="appearance-none pl-10 pr-8 py-3 border-2 border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-400 bg-white/5 text-white hover:border-white/30 transition-all cursor-pointer min-w-40 text-sm text-left"
+                          className="appearance-none pl-10 pr-8 py-3 border-2 border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-400 bg-white/5 text-white hover:border-white/30 transition-all cursor-pointer min-w-20 text-sm text-left"
                         >
                           {selectedCountry.code}
                         </button>
@@ -473,25 +440,20 @@ export default function InlineRegistrationForm() {
                         </svg>
 
                         {/* Dropdown Menu */}
-                        <AnimatePresence>
-                          {isCountryDropdownOpen && (
-                            <>
-                              {/* Backdrop to close dropdown when clicking outside */}
-                              <div 
-                                className="fixed inset-0 z-10" 
-                                onClick={() => setIsCountryDropdownOpen(false)}
-                              />
-                              
-                              {/* Options List with Perfect Scrolling */}
-                              <motion.div
-                                className="absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto bg-gray-800/95 backdrop-blur-sm border-2 border-white/20 rounded-lg shadow-2xl z-20 custom-dropdown-scroll"
-                                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                                transition={{ duration: 0.15 }}
-                                onWheel={(e) => e.stopPropagation()}
-                                onTouchMove={(e) => e.stopPropagation()}
-                              >
+                        {isCountryDropdownOpen && (
+                          <>
+                            {/* Backdrop to close dropdown when clicking outside */}
+                            <div 
+                              className="fixed inset-0 z-10" 
+                              onClick={() => setIsCountryDropdownOpen(false)}
+                            />
+                            
+                            {/* Options List with Perfect Scrolling */}
+                            <div
+                              className="absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto bg-gray-800/95 backdrop-blur-sm border-2 border-white/20 rounded-lg shadow-2xl z-20 custom-dropdown-scroll"
+                              onWheel={(e) => e.stopPropagation()}
+                              onTouchMove={(e) => e.stopPropagation()}
+                            >
                                 {countries.map((country) => (
                                   <button
                                     key={country.code}
@@ -509,10 +471,9 @@ export default function InlineRegistrationForm() {
                                     <span className="text-gray-400 text-xs">({country.name})</span>
                                   </button>
                                 ))}
-                              </motion.div>
+                              </div>
                             </>
                           )}
-                        </AnimatePresence>
                       </div>
                       <div className="relative flex-1">
                         <input
@@ -528,21 +489,16 @@ export default function InlineRegistrationForm() {
                         />
                       </div>
                     </div>
-                    <AnimatePresence>
-                      {errors.whatsapp && (
-                        <motion.p
-                          className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                          </svg>
-                          {errors.whatsapp}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {errors.whatsapp && (
+                      <p
+                        className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.whatsapp}
+                      </p>
+                    )}
                   </div>
 
                   {/* Website or LinkedIn */}
@@ -561,21 +517,16 @@ export default function InlineRegistrationForm() {
                       }`}
                       placeholder="https://yourwebsite.com"
                     />
-                    <AnimatePresence>
-                      {errors.websiteOrLinkedIn && (
-                        <motion.p
-                          className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                          </svg>
-                          {errors.websiteOrLinkedIn}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {errors.websiteOrLinkedIn && (
+                      <p
+                        className="mt-1.5 text-xs text-red-400 flex items-center gap-1"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.websiteOrLinkedIn}
+                      </p>
+                    )}
                   </div>
 
                   {/* Consent Checkbox */}
@@ -600,26 +551,21 @@ export default function InlineRegistrationForm() {
                         No promotional or spam emails. <span className="text-red-400">*</span>
                       </span>
                     </label>
-                    <AnimatePresence>
-                      {errors.consent && (
-                        <motion.p
-                          className="mt-1.5 text-xs text-red-400 flex items-center gap-1 ml-8"
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                        >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                          </svg>
-                          {errors.consent}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    {errors.consent && (
+                      <p
+                        className="mt-1.5 text-xs text-red-400 flex items-center gap-1 ml-8"
+                      >
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.consent}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Submit Button */}
-                <motion.button
+                <button
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full py-4 px-6 md:px-8 text-base font-semibold text-white rounded-lg transition-all duration-300 mt-8 relative overflow-hidden ${
@@ -627,18 +573,7 @@ export default function InlineRegistrationForm() {
                       ? 'bg-gray-600 cursor-not-allowed opacity-70'
                       : 'bg-primary-600 hover:bg-primary-700 shadow-lg hover:shadow-xl'
                   }`}
-                  whileHover={!isSubmitting ? { scale: 1.01, y: -2 } : {}}
-                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  {/* Shine effect on hover */}
-                  {!isSubmitting && (
-                    <motion.div
-                      className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent"
-                      initial={{ x: '-100%' }}
-                      whileHover={{ x: '100%' }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  )}
                   
                   <span className="relative flex items-center justify-center gap-1 md:gap-2.5">
                     {isSubmitting ? (
@@ -661,7 +596,7 @@ export default function InlineRegistrationForm() {
                       </>
                     )}
                   </span>
-                </motion.button>
+                </button>
 
                 {/* Trust Indicators */}
                 <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-gray-300 pt-6 border-t border-white/10 mt-6">
@@ -685,93 +620,58 @@ export default function InlineRegistrationForm() {
                     <span className="font-medium">Instant Access</span>
                   </div>
                 </div>
-              </motion.form>
-            </motion.div>
+              </form>
+            </div>
       </div>
 
       {/* Success Modal */}
-      <AnimatePresence>
-        {showSuccessModal && savedFormData && (
-          <motion.div
+      {showSuccessModal && savedFormData && (
+        <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             onClick={handleCloseModal}
           >
-            <motion.div
+            <div
               className="bg-white rounded-3xl shadow-2xl max-w-[40rem] w-full overflow-hidden"
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              transition={{ type: "spring", duration: 0.5 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Success Header with Animation */}
               <div className="bg-linear-to-br from-primary-600 to-primary-800 p-8 text-center relative overflow-hidden">
-                <motion.div
-                  className="absolute inset-0 bg-white/10"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.3, 0.1, 0.3],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
                 
-                <motion.div
+                <div
                   className="mb-4 inline-flex"
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                 >
                   <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
                     <svg className="w-10 h-10 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <motion.path
+                      <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={3}
                         d="M5 13l4 4L19 7"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ delay: 0.4, duration: 0.6 }}
                       />
                     </svg>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.h2
+                <h2
                   className="text-3xl font-bold text-white"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
                 >
                   Registration Successful! 🎉
-                </motion.h2>
+                </h2>
               </div>
 
               {/* Modal Content */}
               <div className="p-4 md:p-8">
-                <motion.p
+                <p
                   className="text-lg text-gray-700 mb-6 text-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
                 >
                   Thanks, <strong className="text-gray-900">{savedFormData.fullName}</strong>!
                   <br />
                   We've sent a confirmation email to{' '}
                   <strong className="text-gray-900">{savedFormData.email}</strong>
-                </motion.p>
+                </p>
 
-                <motion.div
+                <div
                   className="bg-gray-50 rounded-xl p-4 md:p-6 mb-6"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
                 >
                   <h3 className="font-bold text-lg text-gray-900 mb-4 text-center">
                     What's Next?
@@ -808,24 +708,18 @@ export default function InlineRegistrationForm() {
                       </span>
                     </li>
                   </ul>
-                </motion.div>
+                </div>
 
-                <motion.button
+                <button
                   onClick={handleCloseModal}
                   className="w-full py-3 px-6 btn-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   OK, Got It!
-                </motion.button>
+                </button>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
     </section>
   );
 }

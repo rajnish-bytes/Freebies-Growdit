@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { useSmoothScroll, useScrollTo } from '@hooks/index';
+import { useScrollTo } from '@hooks/index';
 import { Header } from '@components/sections';
 import { LoadingSpinner, PageLoader } from '@components/common';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -16,7 +16,6 @@ const Footer = lazy(() => import('@components/sections/Footer'));
 
 function App() {
   // Use custom hooks
-  useSmoothScroll();
   const { scrollToElement } = useScrollTo();
 
   const scrollToRegister = () => {

@@ -1,5 +1,4 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
@@ -9,8 +8,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export default function Examples() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [fullscreenVideo, setFullscreenVideo] = useState<number | null>(null);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   
@@ -76,49 +73,17 @@ export default function Examples() {
   };
 
   return (
-    <section className="bg-gradient-navy section-padding overflow-hidden relative" ref={ref} id="Examples">
-      <motion.div
+    <section className="bg-gradient-navy section-padding overflow-hidden relative" id="Examples">
+      <div
         className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0],
-          y: [0, 30, 0],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
         aria-hidden="true"
       />
-      <motion.div
+      <div
         className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          x: [0, -40, 0],
-          y: [0, -50, 0],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
         aria-hidden="true"
       />
-      <motion.div
+      <div
         className="absolute top-1/2 left-1/2 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          rotate: [0, 180, 360],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear",
-        }}
         aria-hidden="true"
       />
 
@@ -131,84 +96,58 @@ export default function Examples() {
       />
 
       <div className="container-custom relative z-10">
-        <motion.div
+        <div
           className="text-center mb-12 md:mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.8 }}
+          data-aos="fade-up"
         >
-          <motion.div
+          <div
             className="inline-flex items-center mb-4"
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            data-aos="fade-up"
+            data-aos-delay="100"
           >
             <span className="badge bg-white/20 backdrop-blur-sm text-white border border-white/30 shadow-lg">
               Example Contents
             </span>
-          </motion.div>
-          <motion.h2
+          </div>
+          <h2
             className="text-white mb-6 leading-[1.1] tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3 }}
+            data-aos="fade-up"
+            data-aos-delay="200"
           >
            Preview of what we deliver in a
             <br />
             <span className="bg-gradient-to-b from-primary-500 to-primary-600 bg-clip-text text-transparent">free content week</span>
-          </motion.h2>
-          {/* <motion.h2
-            className="mb-4 text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Examples from our{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-primary-500">
-              free content week.
-            </span>
-          </motion.h2> */}
-          <motion.p
+          </h2>
+          <p
             className="text-gray-300 text-lg mx-auto"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            data-aos="fade-up"
+            data-aos-delay="300"
           >
             A quick look at the actual work produced for founders like you.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
 
       <div className="relative py-6">
-        <motion.button
+        <button
           onClick={handlePrev}
           className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-          transition={{ delay: 0.5 }}
           aria-label="Previous example"
         >
           <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
-        </motion.button>
+        </button>
 
-        <motion.button
+        <button
           onClick={handleNext}
           className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all shadow-xl group"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, x: 20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-          transition={{ delay: 0.5 }}
           aria-label="Next example"
         >
           <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
-        </motion.button>
+        </button>
 
         <Swiper
           onSwiper={setSwiperInstance}
@@ -246,16 +185,13 @@ export default function Examples() {
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
           }}
         >
-          {examples.map((example, index) => (
+          {examples.map((example) => (
             <SwiperSlide
               key={example.id}
             >
-              <motion.article 
-                  className="relative aspect-9/16 rounded-2xl sm:rounded-3xl shadow-2xl cursor-pointer transition-all duration-500 hover:shadow-3xl"
+              <article 
+                  className="relative aspect-9/16 rounded-2xl sm:rounded-3xl shadow-2xl cursor-pointer transition-all duration-500 hover:shadow-3xl hover:scale-105"
                   onClick={() => handleVideoClick(example.id)}
-                  whileHover={{ 
-                    scale: 1.05,
-                  }}
                 >
                   <div className="absolute inset-0">
                     <iframe
@@ -278,26 +214,21 @@ export default function Examples() {
                     </div>
                   </div>
 
-                  <motion.div
+                  <div
                     className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-white text-xs sm:text-sm font-semibold shadow-lg z-10"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
                   >
                     {example.type}
-                  </motion.div>
-                </motion.article>
+                  </div>
+                </article>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
       <div className="container-custom relative z-10">
-        <motion.div
+        <div
           className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          data-aos="fade-up"
         >
           <p className="text-gray-300 text-sm mb-6">
             Actual content will be customized to match your branding style and preferences
@@ -305,30 +236,23 @@ export default function Examples() {
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             {['HD Quality', 'Professional Editing', 'Trending Audio', 'Custom Branding'].map((tag, idx) => (
-              <motion.span
+              <span
                 key={idx}
-                className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-medium bg-white/10 border border-white/20 text-white backdrop-blur-sm"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                transition={{ delay: 1 + idx * 0.1 }}
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
+                className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-medium bg-white/10 border border-white/20 text-white backdrop-blur-sm hover:scale-110 hover:bg-white/20 transition-all"
               >
                 <svg className="w-3 h-3 mr-1.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 {tag}
-              </motion.span>
+              </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {fullscreenVideo !== null && (
-        <motion.div
+        <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-2 sm:p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
           onClick={closeFullscreen}
         >
           <button
@@ -341,15 +265,12 @@ export default function Examples() {
             </svg>
           </button>
 
-            <motion.div
+            <div
             className="w-full max-w-[min(90vw,400px)] mx-auto"
             style={{
               aspectRatio: '9/16',
             }}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
             <iframe
               className="w-full h-full rounded-lg sm:rounded-2xl"
@@ -359,8 +280,8 @@ export default function Examples() {
               allowFullScreen
               style={{ border: 'none' }}
             />
-            </motion.div>
-        </motion.div>
+            </div>
+        </div>
       )}
     </section>
   );
