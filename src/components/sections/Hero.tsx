@@ -12,11 +12,11 @@ export default function Hero({ onOpenForm }: HeroProps) {
       />
       
       <div
-        className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-navy-300/30 via-navy-200/20 to-transparent rounded-full blur-3xl"
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-navy-300/30 via-navy-200/20 to-transparent rounded-full blur-3xl"
         aria-hidden="true"
       />
 
-      <div className="container-custom relative z-10 py-20 md:pb-24">
+      <div className="container-custom relative z-10 py-24 md:pb-24">
         <div className="mx-auto text-center">
           {/* Badge with Animation */}
           <div
@@ -100,7 +100,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
       </div>
 
       {/* Scroll Indicator */}
-      <div
+      {/* <div
         data-aos="fade-up"
         data-aos-delay="500"
         className="absolute bottom-3 left-1/2 transform -translate-x-1/2"
@@ -114,7 +114,7 @@ export default function Hero({ onOpenForm }: HeroProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

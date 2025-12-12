@@ -7,7 +7,7 @@ import App from './App.tsx'
 function AppWithAOS() {
   useEffect(() => {
     AOS.init({
-      duration: 500,
+      duration: 600,
       easing: 'ease-in-out',
       once: true,
       offset: 50,
