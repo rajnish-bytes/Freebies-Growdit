@@ -3,14 +3,14 @@ export default function Features() {
     { 
       count: "5", 
       label: "Reels",
-      detail: "Professional short-form video content",
+      detail: "built to educate, hook, and convert.",
       color: "from-primary-700 to-primary-900",
       accent: "blue"
     },
     { 
       count: "2", 
       label: "Carousels",
-      detail: "Engaging multi-slide visual posts",
+      detail: "Clean, high-impact visual slides",
       //color: "from-primary-700 to-primary-900",
       color: "from-primary-700 to-primary-900",
       accent: "blue"
@@ -70,7 +70,7 @@ export default function Features() {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            Professionally crafted content delivered in 48 hours. You record, we handle everything else.
+            You just record, we handle everything else.
           </p>
         </div>
 
@@ -104,10 +104,10 @@ export default function Features() {
 
                       {/* Content */}
                       <div className="flex-1 text-left sm:text-left">
-                        <h3 className="text-4xl sm:text-3xl md:text-4xl font-bold text-white mb-0 tracking-tight">
+                        <h3 className="text-4xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
                           {item.label}
                         </h3>
-                        <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
+                        <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mt-0">
                           {item.detail}
                         </p>
                       </div>
@@ -136,11 +136,11 @@ export default function Features() {
               
               <div className="space-y-6">
                 {[
-                  { title: "Content Strategy & Ideation", desc: "Viral concepts tailored to your niche" },
-                  { title: "Professional Scriptwriting", desc: "Compelling scripts that convert" },
-                  { title: "Advanced Video Editing", desc: "Cutting-edge effects and transitions" },
-                  { title: "Visual Design & Graphics", desc: "Eye-catching branded visuals" },
-                  { title: "Platform Optimization", desc: "Maximized for engagement and reach" }
+                  { title: "Research & Ideation", desc: "Viral concepts tailored to your niche" },
+                  { title: "Scriptwriting", desc: "Compelling scripts that convert" },
+                  { title: "Video Editing", desc: "Cutting-edge effects and transitions" },
+                  { title: "Design & Graphics", desc: "Eye-catching branded visuals" },
+                  { title: "Optimization", desc: "Maximized for engagement and reach" }
                 ].map((service, idx) => (
                   <div
                     key={idx}
@@ -182,7 +182,7 @@ export default function Features() {
                 Simply Record Yourself
               </h4>
               <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-6">
-                Follow our scripts and record your footage. We take care of ideation, editing, design, and optimization—no technical skills needed.
+                Follow our scripts and record your footage. We take care of ideation, scripting, editing and designing, all handled for you.
               </p>
 
               {/* Simple Checklist */}

@@ -14,43 +14,43 @@ export default function Examples() {
   const examples = [
     {
       id: 1,
-      type: "Reel",
+      type: "Ibrahim",
       gradient: "from-blue-400 to-blue-600",
-      videoUrl: "https://www.youtube.com/embed/p8TUR3itK4M"
+      videoUrl: "https://www.youtube.com/embed/-C36J87hju0"
     },
     {
       id: 2,
-      type: "Carousel",
+      type: "Shaan",
       gradient: "from-gray-200 to-gray-300",
       videoUrl: "https://www.youtube.com/embed/YBjd5rNi8wE"
     },
     {
       id: 3,
-      type: "Reel",
+      type: "Henok",
       gradient: "from-purple-400 to-purple-600",
-      videoUrl: "https://www.youtube.com/embed/-C36J87hju0"
-    },
-    {
-      id: 4,
-      type: "Carousel",
-      gradient: "from-pink-200 to-pink-300",
       videoUrl: "https://www.youtube.com/embed/xQDeiDMpN84"
     },
     {
+      id: 4,
+      type: "Devonta",
+      gradient: "from-pink-200 to-pink-300",
+      videoUrl: "https://www.youtube.com/embed/p8TUR3itK4M"
+    },
+    {
       id: 5,
-      type: "Reel",
+      type: "Lake",
       gradient: "from-cyan-400 to-cyan-600",
       videoUrl: "https://www.youtube.com/embed/EdrIybETwBk"
     },
     {
       id: 6,
-      type: "Carousel",
+      type: "Alison",
       gradient: "from-indigo-200 to-indigo-300",
       videoUrl: "https://www.youtube.com/embed/FBih9irDRcg"
     },
     {
       id: 7,
-      type: "Reel",
+      type: "Ibrahim",
       gradient: "from-green-400 to-green-600",
       videoUrl: "https://www.youtube.com/embed/rWgLufPBQdo"
     },
@@ -115,16 +115,16 @@ export default function Examples() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-           Preview of what we deliver in a
+           Preview of what we deliver in
             <br />
-            <span className="bg-gradient-to-b from-primary-500 to-primary-600 bg-clip-text text-transparent">free content week</span>
+            <span className="font-extrabold bg-gradient-to-b from-primary-500 to-primary-600 bg-clip-text text-transparent">free content week</span>
           </h2>
           <p
             className="text-gray-300 text-lg mx-auto"
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            A quick look at the actual work produced for founders like you.
+           See the quality and style we delivered for other founders.
           </p>
         </div>
       </div>

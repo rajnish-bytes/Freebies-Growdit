@@ -3,18 +3,18 @@ export default function Footer() {
 
   const socialLinks = [
     { 
-      name: 'Twitter', 
-      href: '#', 
-      ariaLabel: 'Follow us on Twitter',
+      name: 'Facebook', 
+      href: 'https://www.facebook.com/people/Growdit/100094454478798/', 
+      ariaLabel: 'Follow us on Facebook',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
         </svg>
       )
     },
     { 
       name: 'Instagram', 
-      href: '#', 
+      href: 'https://www.instagram.com/thegrowdit/', 
       ariaLabel: 'Follow us on Instagram',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -23,8 +23,18 @@ export default function Footer() {
       )
     },
     { 
+      name: 'Twitter', 
+      href: 'https://x.com/thegrowdit', 
+      ariaLabel: 'Follow us on Twitter',
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      )
+    },
+    { 
       name: 'LinkedIn', 
-      href: '#', 
+      href: 'https://www.linkedin.com/company/growdit/', 
       ariaLabel: 'Connect on LinkedIn',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -32,25 +42,16 @@ export default function Footer() {
         </svg>
       )
     },
-    { 
-      name: 'YouTube', 
-      href: '#', 
-      ariaLabel: 'Subscribe on YouTube',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </svg>
-      )
-    }
+    
   ];
 
   return (
     <footer className="bg-gradient-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 py-6 md:py-10">
         
         {/* Top Section - Centered Logo and Tagline */}
         <div className="text-center mb-6 md:mb-10">
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-white rounded-full mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-6 py-2 bg-white rounded-3xl mb-6">
             <img
               src="/mascotLogo.png"
               alt="Growdit logo mark"
@@ -63,10 +64,10 @@ export default function Footer() {
               className="ml-1 h-10 object-contain"
               loading="lazy"
             />
-          </div>
+          </div> */}
           
-          <p className="text-gray-300 text-lg mx-auto leading-relaxed">
-            Built for founders who want clear, consistent content.
+          <p className="text-gray-200 text-lg mx-auto leading-relaxed py-2 px-4">
+            Built to help founders <span className="text-white font-semibold">experience premium content</span> before committing.
           </p>
         </div>
 

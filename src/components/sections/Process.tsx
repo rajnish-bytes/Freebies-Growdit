@@ -3,38 +3,38 @@ export default function Process() {
   const steps = [
     {
       step: "01",
-      title: "Drop Your Footage",
-      description: "Upload your raw clips — WeTransfer, Google Drive, Dropbox — whatever works for you.",
-      image: "/process/Every Process image.png"
-    },
-    {
-      step: "02",
-      title: "We Do Our Magic",
-      description: "We cut, trim, color-grade, and add engaging transitions.",
+      title: "Submit Your Details",
+      description: "Share your info so we clearly understand your brand positioning.",
       image: "/process/Forum Image.png"
     },
     {
-      step: "03",
-      title: "Feedback? Easy",
-      description: "Want something changed? We offer smooth revision rounds to make sure everything.",
-      image: "/process/Recording image.png"
-    },
-    {
-      step: "04",
-      title: "We Do Our Magic",
-      description: "We cut, trim, color-grade, and add engaging transitions.",
-      image: "/process/Scripts Download Image.png"
-    },
-    {
-      step: "05",
-      title: "Feedback? Easy",
-      description: "Want something changed? We offer smooth revision rounds to make sure everything.",
+      step: "02",
+      title: "Join Your WhatsApp Group",
+      description: "We’ll add you to your personal WhatsApp group for coordination.",
       image: "/process/WhatsApp Group image.png"
     },
     {
+      step: "03",
+      title: "Get Your Custom Scripts",
+      description: "We’ll create scripts tailored precisely to your tone and niche.",
+      image: "/process/Scripts Download Image.png"
+    },
+    {
+      step: "04",
+      title: "Record Your Clips Easily",
+      description: "You’ll receive clear steps showing what to record and how.",
+      image: "/process/Recording image.png"
+    },
+    {
+      step: "05",
+      title: "We Handle Everything Else",
+      description: "We’ll manage editing, design, and delivery for your content.",
+      image: "/process/Every Process image.png"
+    },
+    {
       step: "06",
-      title: "Upload & Grow",
-      description: "We deliver your final video in ready-to-upload YouTube format.",
+      title: "Review, Approve & Post",
+      description: "You review the final output, request tweaks if needed, and post.",
       image: "/process/Review Image.png"
     }
   ];

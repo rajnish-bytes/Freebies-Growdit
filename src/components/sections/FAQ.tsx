@@ -68,32 +68,32 @@ export default function FAQ() {
   const faqs = [
     {
       question: "Is this really free?",
-      answer: "Yes! Your first week of content is completely free with no credit card required. We want you to experience the quality of our work before making any commitment. After your free week, you can choose to continue with one of our affordable plans.",
+      answer: "Yes. Your first week of content is completely free. It’s simply a way to show what we do before either of us commits.",
       category: "Pricing"
     },
     {
-      question: "How are you different from my feed?",
-      answer: "Unlike generic content, we create personalized content specifically for your brand, audience, and niche. Each piece is customized to match your voice, style, and goals. We take the time to understand your unique value proposition and craft content that resonates with your specific audience.",
+      question: "Will the content match my branding and niche?",
+      answer: "Yes. We tailor everything to your brand colors, tone, messaging, and niche. Your reels are built specifically around your positioning, not templates.",
       category: "Quality"
     },
     {
       question: "How long does it take for content to be created?",
-      answer: "Your first free week of content will be delivered within 5-7 business days after you submit your brand information and preferences. For ongoing subscriptions, new content batches are delivered weekly, ensuring you always have fresh, engaging material ready to post.",
+      answer: "You’ll receive your free content week within 5 to 7 business days after we get your recordings.",
       category: "Timeline"
     },
     {
-      question: "Can I get my content prioritized?",
-      answer: "Yes! We offer priority creation and delivery for our premium tier subscribers. Priority members receive their content within 2-3 business days and get first access to new features and content types. Contact our team to learn more about upgrading to priority status.",
-      category: "Service"
+      question: "Do I need to sign anything to get started?",
+      answer: "No contracts and no commitments. You get the free content week with zero obligations. Decide later if you want to continue.",
+      category: "Commitments"
     },
     {
-      question: "What happens if the free week ends?",
-      answer: "After your free week, you'll have the option to subscribe to one of our paid plans to continue receiving professional content. There's no automatic billing - you decide if you want to continue. You'll keep all the content from your free week regardless of whether you subscribe or not.",
+      question: "What happens after this free week ends?",
+      answer: "After free week ends if you like the final output, you can continue with any of our paid services. If not, no problem you keep all the content and can post it wherever you want. No sales pressure!",
       category: "Billing"
     },
     {
-      question: "What if I don't like the content?",
-      answer: "We offer unlimited revisions during your free week to ensure you're 100% satisfied. Our goal is to create content that perfectly represents your brand. If something isn't quite right, just let us know and we'll make it perfect.",
+      question: "What if the content needs changes?",
+      answer: "We offer unlimited revisions during your free week to ensure you're 100% satisfied. If something isn't quite right, just let us know and we'll make it perfect.",
       category: "Support"
     }
   ];
@@ -134,7 +134,7 @@ export default function FAQ() {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              Everything you need to know about our free content week.
+              Everything you should know about the free content week.
             </p>
           </div>
 

@@ -2,63 +2,63 @@
 export default function Testimonials() {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Content Creator",
-      company: "SJ Media",
-      content: "The quality of content I received was exceptional. My engagement increased by 300% in just the first week. Highly recommended for anyone serious about their personal brand!",
-      metric: "300% Growth",
-      avatar: "https://i.pravatar.cc/150?img=1",
-      initials: "SJ",
+      name: "Ibrahim Mohammed",
+      role: "Founder",
+      company: "IAM Accounting",
+      content: "I’ve been working with Growdit for two years and the quality has been solid every single time. Even in the free content week, which literally cost me $0, the quality didn’t drop at all. It didn’t feel like a sample or a ‘trial version.’ It looked like the same level of work I normally pay for.",
+      metric: "Trusted for 2 Years",
+      avatar: "/Clients_pfp/Ibrahim Mohammed.png",
+      initials: "IM",
       color: "bg-blue-500"
     },
     {
-      name: "Michael Chen",
-      role: "Entrepreneur",
-      company: "TechStart Inc",
-      content: "I was skeptical at first, but the free week completely changed my mind. The reels were professionally edited and the carousels were perfectly designed for my audience.",
-      metric: "10K Followers",
-      avatar: "https://i.pravatar.cc/150?img=12",
-      initials: "MC",
+      name: "Henok Kebede",
+      role: "CPA & Founder",
+      company: "HK Financial Advisory LLC",
+      content: "I wasn’t sure if personal branding was something I should even start. But the free content week changed my mind. The videos were solid, and it gave me the confidence to move forward. It didn’t feel like a trial. It felt usable, and that’s what convinced me to continue working with Growdit.",
+      metric: "Confidence to Start",
+      avatar: "/Clients_pfp/Henok Kebede.png",
+      initials: "HK",
       color: "bg-purple-500"
     },
     {
-      name: "Emily Rodriguez",
-      role: "Digital Marketer",
-      company: "Growth Labs",
-      content: "This service saved me countless hours. Instead of spending time creating content, I can focus on growing my business. The ROI has been incredible!",
-      metric: "20hrs Saved",
-      avatar: "https://i.pravatar.cc/150?img=5",
-      initials: "ER",
+      name: "Lake Mitchell",
+      role: "Chief Executive Officer",
+      company: "Lake Tax & Advisory Group",
+      content: "“The free content week honestly surprised me. The quality felt premium and completely aligned with my brand. My main color is yellow, and they matched the exact codes without me even asking. It didn’t feel like a free sample. It felt like content made specifically for my business.!",
+      metric: "Premium Quality",
+      avatar: "/Clients_pfp/Lake Mitchell.png",
+      initials: "LM",
       color: "bg-pink-500"
     },
     {
-      name: "David Williams",
-      role: "Social Media Manager",
-      company: "Brand Studio",
-      content: "The team understood exactly what I needed. Every piece of content aligned perfectly with my brand voice and aesthetic. Can't imagine going back to creating content alone.",
-      metric: "Perfect Match",
-      avatar: "https://i.pravatar.cc/150?img=13",
-      initials: "DW",
+      name: "Shaan Rizvi",
+      role: "Founder",
+      company: "Riz Biz Services",
+      content: "The process was incredibly simple. I recorded the scripts they gave me and the final videos landed in my WhatsApp group within a week. The outputs were solid as well.",
+      metric: "Effortless Process",
+      avatar: "/Clients_pfp/Shaan Rizvi.png",
+      initials: "SR",
       color: "bg-green-500"
     },
     {
-      name: "Jessica Park",
-      role: "Influencer",
-      company: "Lifestyle Brand",
-      content: "Best decision I made for my personal brand this year. The content quality is consistently high, and my followers have noticed the improvement immediately.",
-      metric: "Premium Quality",
-      avatar: "https://i.pravatar.cc/150?img=9",
-      initials: "JP",
+      name: "Aly Rebekah",
+      role: "Business Owner",
+      company: "Abundant Amos Consulting",
+      content: "The free content week exceeded my expectations. All five reels pulled more views and engagement than my usual posts, and the comments were full of people loving the content.",
+      metric: "High Engagement",
+      avatar: "/Clients_pfp/Aly Davis.png",
+      initials: "AD",
       color: "bg-indigo-500"
     },
     {
-      name: "Marcus Thompson",
-      role: "Business Coach",
-      company: "Success Academy",
-      content: "Professional, creative, and results-driven. The free week proved the value, and I've been a paying customer ever since. This is the future of content creation!",
-      metric: "Long-term Partner",
-      avatar: "https://i.pravatar.cc/150?img=14",
-      initials: "MT",
+      name: "Devonta Brown",
+      role: "CEO",
+      company: "Brown Tax Solutions",
+      content: "Final output was amazing. They even provided reel covers and captions, so posting was basically copy-paste for me. The whole thing was simple and the quality was on point.",
+      metric: "Everything Included",
+      avatar: "/Clients_pfp/Devonta.png",
+      initials: "DB",
       color: "bg-orange-500"
     }
   ];
@@ -96,7 +96,7 @@ export default function Testimonials() {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            Real results from real creators who transformed their brand with our content.
+            The kind of responses clients send us after their free content week.
           </p>
         </div>
 
